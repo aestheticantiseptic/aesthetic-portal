@@ -3,123 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kawaiifoxy1985's Profile</title>
-    <!-- Linking the same external stylesheet -->
+    <title>User Profile Page</title>
     <link rel="stylesheet" href="style.css">
+    <!-- This empty block will automatically load custom CSS styles added by users -->
+    <style id="userCustomStyles"></style>
 </head>
 <body>
 
-    
+    <!-- Main Navigation Ribbon Header -->
     <div class="utility-bar">
         <div class="logo-placeholder">♥️ the aesthetic portal</div>
         <div class="utility-links">
-            <a href="#">Help</a> | <a href="#">Sign Up / Login</a>
+            <a href="index.html">Home</a> | <a href="#" id="toggleEditBtn">Edit Profile Form</a>
         </div>
     </div>
 
-    <!-- Navigation Menu (Links back to index.html) -->
-    <nav class="main-nav">
-        <a href="index.html" class="nav-item">Home</a>
-        <a href="#" class="nav-item">Browse</a>
-        <a href="#" class="nav-item">Search</a>
-        <a href="#" class="nav-item">Messages</a>
-        <a href="#" class="nav-item">Friends</a>
-        <a href="#" class="nav-item">Chat Rooms</a>
-        <a href="profile.html" class="nav-item">Edit Profile</a>
-    </nav>
+    <!-- Interactive Edit Panel Drawer Overlay (Hidden by Default) -->
+    <div id="editProfileDrawer" style="display: none; background: #fff; border: 2px solid #f6409f; max-width: 500px; margin: 15px auto; padding: 15px;">
+        <h3 style="color: #b30066; margin-top: 0;">🔧 Edit Profile Control Center</h3>
+        
+        <label style="display:block; margin-bottom: 5px; font-weight:bold;">Profile Display Name:</label>
+        <input type="text" id="inputUsername" value="kawaiifoxy1985" style="width:100%; padding:5px; margin-bottom:12px;">
 
+        <label style="display:block; margin-bottom: 5px; font-weight:bold;">Upload Profile Image File:</label>
+        <input type="file" id="imageFileInput" accept="image/*" style="margin-bottom:12px;">
+
+        <label style="display:block; margin-bottom: 5px; font-weight:bold;">About Me Text Blurb:</label>
+        <textarea id="inputAboutMe" style="width:100%; height:60px; margin-bottom:12px;">(nothing here yet)</textarea>
+
+        <label style="display:block; margin-bottom: 5px; font-weight:bold;">Myspace-Style Custom HTML / CSS Code Blocks:</label>
+        <textarea id="inputCustomCode" placeholder="Type background colors, glitter rules, or styles here..." style="width:100%; height:100px; font-family:monospace; margin-bottom:12px;"></textarea>
+
+        <button id="saveProfileBtn" class="btn-cta" style="width:100%;">Save Changes & Update Network</button>
+    </div>
+
+    <!-- Main Layout Content Structure -->
     <main class="main-content" style="max-width: 500px;">
         
-        <div class="login-banner">Last Login: 7/26/2026</div>
-        
-        <div style="margin-bottom: 15px;">
-            <button class="btn-cta" style="font-size:11px; padding: 4px 8px;">Edit Profile</button>
-        </div>
-        <!-- Profile Name and Picture Block -->
-        <div class="box">
+        <div class="login-banner">Last Login: <span id="displayLastLogin">7/26/2026</span></div>
+
+        <!-- Profile Hero Avatar Banner Card -->
+        <div class="box ID-profile-card">
             <div class="box-body" style="text-align: center;">
-                <h2 style="font-size: 18px; margin: 5px 0 10px 0; color: #b30066;">kawaiifoxy1985</h2>
-                <div style="margin-bottom: 10px;">
-                    <img src="https://picsum.photos" alt="Profile Picture" style="border: 1px solid #000; width: 170px; height: 200px; object-fit: cover;">
-
+                <h2 id="displayUsername" style="font-size: 18px; margin: 5px 0 10px 0; color: #b30066;">kawaiifoxy1985</h2>
+                <div style="margin-bottom: 10px; display: flex; justify-content: center;">
+                    <div id="avatarFrame" style="width: 170px; height: 200px; border: 1px solid #000; background: #ff85c6; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                        <!-- Fallback avatar icon -->
+                        <svg id="fallbackSvg" width="170" height="200" viewBox="0 0 170 200">
+                            <rect x="35" y="50" width="20" height="30" fill="#000" /><rect x="115" y="50" width="20" height="30" fill="#000" />
+                            <rect x="35" y="130" width="20" height="20" fill="#000" /><rect x="115" y="130" width="20" height="20" fill="#000" />
+                            <rect x="55" y="150" width="60" height="20" fill="#000" />
+                        </svg>
+                        <img id="profileImageDisplay" src="" style="display:none; width:100%; height:100%; object-fit:cover;">
+                    </div>
                 </div>
-                <div style="font-style: italic; color: #666; margin-bottom: 5px;">"A space for friends!"</div>
-            </div>
-        </div>
-        
-        <!-- Contact Framework Card -->
-        <div class="box">
-            <div class="box-header">Contacting kawaiifoxy1985</div>
-            <div class="box-body">Log in to contact this user.</div>
-        </div>
-
-        <!-- Specifications Metric Matrix -->
-        <div class="box">
-            <div class="box-header">kawaiifoxy1985's Details</div>
-            <div class="box-body">
-                <table class="details-table">
-                    <tr><td class="label-cell">Gender:</td><td>Female</td></tr>
-                    <tr><td class="label-cell">Age:</td><td>41</td></tr>
-                    <tr><td class="label-cell">Location:</td><td>Usa</td></tr>
-                    <tr><td class="label-cell">Status:</td><td>Taken</td></tr>
-                </table>
+                <div class="headline-quote" style="font-style: italic; color: #666;">"A space for friends!"</div>
             </div>
         </div>
 
-        <!-- Interstitial Extended Network State -->
-        <div class="network-banner">
-            kawaiifoxy1985 is in your extended network
+        <!-- Contact Options Info Frame -->
+        <div class="box ID-contact-card">
+            <div class="box-header">Contacting <span class="text-user-name">kawaiifoxy1985</span></div>
+            <div class="box-body">Add to Friends | Send Message | Instant Chat</div>
         </div>
 
-        <!-- Blurbs Content Box -->
-        <div class="box box-orange">
-            <div class="box-header box-header-orange">kawaiifoxy1985's Blurbs</div>
+        <!-- Personal Text Blurbs Showcase Panel -->
+        <div class="box box-orange ID-blurbs-card">
+            <div class="box-header box-header-orange"><span class="text-user-name">kawaiifoxy1985</span>'s Blurbs</div>
             <div class="box-body">
                 <div class="sub-title">About me:</div>
-                <div>(nothing here yet)</div>
-                <div class="sub-title">Who I'd like to meet:</div>
-                <div>everyone!</div>
+                <div id="displayAboutMe">(nothing here yet)</div>
             </div>
         </div>
 
-        <!-- Interests Embed Framework Block -->
-        <div class="box box-orange">
-            <div class="box-header box-header-orange">kawaiifoxy1985's Interests</div>
+        <!-- User Top 8 Friends Layout Space -->
+        <div class="box box-orange ID-top8-card">
+            <div class="box-header box-header-orange"><span class="text-user-name">kawaiifoxy1985</span>'s Friend Space</div>
             <div class="box-body">
-                <table class="details-table">
-                    <tr>
-                        <td class="label-cell" style="width: 25%;">Television</td>
-                        <td>
-                            <div class="embed-container">
-                                <a href="https://files.catbox.moe/nrzg6f.png" target="_blank">
-                                    <img src="https://files.catbox.moe/nrzg6f.png" alt="One Piece Fan">
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- User Top 8 Feed Anchor -->
-        <div class="box box-orange">
-            <div class="box-header box-header-orange">kawaiifoxy1985's Top 8</div>
-            <div class="box-body"><em>No friends in the Top 8 yet.</em></div>
-        </div>
-
-        <!-- Public Comments Feed Wall Container -->
-        <div class="box box-orange">
-            <div class="box-header box-header-orange">Comments</div>
-            <div class="box-body">
-                <div class="comment-input-group">
-                    <textarea class="comment-box" placeholder="Leave a comment..."></textarea>
-                    <button class="btn-cta" style="height: 40px;">Post</button>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; margin-top:10px;">
+                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Tom</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#ffcc80; margin-top:4px;"></div></div>
+                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Amy</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#ffccd8; margin-top:4px;"></div></div>
+                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Pixel</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#e0f7fa; margin-top:4px;"></div></div>
+                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Goth</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#f3e5f5; margin-top:4px;"></div></div>
                 </div>
-                <div style="margin-top: 10px; color: #666; font-style: italic;">No comments yet.</div>
             </div>
         </div>
 
     </main>
 
+    <!-- Interactive Custom Layout Controller Data Script Engine -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleEditBtn = document.getElementById("toggleEditBtn");
+            const editDrawer = document.getElementById("editProfileDrawer");
+            const saveProfileBtn = document.getElementById("saveProfileBtn");
+
+            // Form inputs
+            const inputUsername = document.getElementById("inputUsername");
+            const imageFileInput = document.getElementById("imageFileInput");
+            const inputAboutMe = document.getElementById("inputAboutMe");
+            const inputCustomCode = document.getElementById("inputCustomCode");
+
+            // Display targets
+            const displayUsername = document.getElementById("displayUsername");
+            const profileImageDisplay = document.getElementById("profileImageDisplay");
+            const fallbackSvg = document.getElementById("fallbackSvg");
+            const displayAboutMe = document.getElementById("displayAboutMe");
+            const userCustomStyles = document.getElementById("userCustomStyles");
+            const userNameLabels = document.querySelectorAll(".text-user-name");
+
+            // Show or hide the input editing form drawer
+            toggleEditBtn.addEventListener("click", () => {
+                editDrawer.style.display = editDrawer.style.display === "none" ? "block" : "none";
+            });
+
+            // Handle client updates
+            saveProfileBtn.addEventListener("click", () => {
+                // Update text configurations
+                displayUsername.textContent = inputUsername.value;
+                displayAboutMe.textContent = inputAboutMe.value;
+                userNameLabels.forEach(el => el.textContent = inputUsername.value);
+
+                // Inject CSS layout configurations directly into the style element tag block
+                userCustomStyles.innerHTML = inputCustomCode.value;
+
+                // Process uploaded picture file
+                const file = imageFileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        profileImageDisplay.src = e.target.result;
+                        profileImageDisplay.style.display = "block";
+                        fallbackSvg.style.display = "none";
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                editDrawer.style.display = "none";
+                alert("Profile changes computed instantly!");
+            });
+        });
+    </script>
 </body>
 </html>
