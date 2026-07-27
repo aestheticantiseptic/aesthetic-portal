@@ -34,7 +34,6 @@
 
     <!-- CORE CHAT FRAME MAIN COMPONENT -->
     <div class="chat-wrap" style="max-width: 850px; margin: 20px auto; background-color: #ffffff; padding: 20px; border: 1px solid #ff007f;">
-        <div id="google_translate_element" style="float: right;"></div>
         <h2 style="color: #ff007f; margin-top:0; font-family: sans-serif;">✨ PinkSpace Chat Rooms ✨</h2>
         
         <!-- Navigation List for Chatrooms -->
@@ -84,7 +83,7 @@
         
         <!-- Inputs Message Blocks Row -->
         <div class="input-row" style="display: flex; gap: 10px; width: 100%;">
-            <input type="text" id="chat-user" placeholder="Nickname" style="width: 130px; padding: 8px; border: 1px solid #ff007f; box-sizing: border-box;">
+            <input type="text" id="chat-user" placeholder="Nickname" value="SpaceUser" style="width: 130px; padding: 8px; border: 1px solid #ff007f; box-sizing: border-box;">
             <input type="text" id="chat-msg" placeholder="Type message... (e.g., KEKW Kappa OMEGALUL)" style="flex: 1; padding: 8px; border: 1px solid #ff007f; box-sizing: border-box;">
             <button onclick="sendMessage()" style="background-color: #ff007f; color: white; padding: 8px 20px; border: none; font-weight: bold; cursor: pointer; box-shadow: none;">Send</button>
         </div>
@@ -100,17 +99,21 @@
         </div>
     </div>
 
-    <!-- SUPABASE SECURITY PIPELINES LINK DRIVER -->
+    <!-- FIXED SUPABASE LIBRARY SOURCE LINK -->
     <script src="https://jsdelivr.net"></script>
     <script>
-        const SUPABASE_URL = "https://supabase.co";
-        const SUPABASE_ANON_KEY = "sb_publishable_2DWBfoCYTHLT-hDVvN-Trw_P3PWw6YX";
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let supabase = null;
+        try {
+            const SUPABASE_URL = "https://supabase.co";
+            const SUPABASE_ANON_KEY = "sb_publishable_2DWBfoCYTHLT-hDVvN-Trw_P3PWw6YX";
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch(e) {
+            console.log("Supabase error layout check: " + e.message);
+        }
 
         let activeChannelRoom = 'Main Chat Room';
         let lastMessageId = 0;
 
-        // FIXED EMBED AUDIO PATH LINKS (Bypasses security permission errors)
         const soundDoorOpen = new Audio("https://mixkit.co");
         const soundDoorSlam = new Audio("https://mixkit.co");
         const soundMessageChime = new Audio("https://mixkit.co");
