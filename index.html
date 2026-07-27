@@ -3,85 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Aesthetic Portal - Home</title>
-    <!-- Linking the external stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <title>PinkSpace - Profile Paradise</title>
+    <!-- Fonts for Y2K Theme -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- FREE SUPABASE JS LIBRARY -->
+    <script src="https://jsdelivr.net"></script>
+
+    <style>
+        /* Base Styling */
+        body {
+            background-color: #ffb6c1;
+            background-image: radial-gradient(#ff69b4 20%, transparent 20%), radial-gradient(#ff69b4 20%, transparent 20%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            font-family: 'Comic Neue', sans-serif;
+            color: #4a0026;
+            margin: 0;
+            padding: 0;
+        }
+        /* Top Navigation Bar */
+        .navbar {
+            background: #ff1493;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 3px double #fff;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 0px #4a0026;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+            color: #fff0f5;
+        }
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.92);
+            border: 4px ridge #ff1493;
+            padding: 20px;
+            box-shadow: 6px 6px 0px #ff69b4;
+        }
+        header { text-align: center; border-bottom: 3px dashed #ff1493; padding-bottom: 10px; margin-bottom: 20px; }
+        header h1 { font-family: 'Cherry Bomb One', cursive; color: #ff1493; font-size: 3.5rem; text-shadow: 2px 2px 0px #fff, 4px 4px 0px #4a0026; margin: 0; }
+        .columns { display: flex; gap: 20px; }
+        .left-col { flex: 1; }
+        .right-col { flex: 2; }
+        .box { border: 2px solid #ff69b4; background: #fff0f5; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .box h2 { margin-top: 0; background: #ff69b4; color: white; padding: 5px; font-size: 1.2rem; text-shadow: 1px 1px #4a0026; }
+        textarea { width: 100%; height: 120px; box-sizing: border-box; font-family: monospace; border: 2px solid #ff69b4; }
+        footer { margin-top: 30px; text-align: center; font-size: 0.8rem; border-top: 2px solid #ff1493; padding-top: 10px; color: #7a003e; font-weight: bold; }
+    </style>
+    <!-- Placeholder where user custom layout styles get dynamically forced onto the screen -->
+    <style id="user-custom-styles"></style>
 </head>
 <body>
 
-    
-    <div class="utility-bar">
-        <div class="logo-placeholder">♥️ the aesthetic portal</div>
-        <div class="utility-links">
-            <a href="#">Help</a> | <a href="#">Sign Up / Login</a>
+<!-- Layout Navigation Menu -->
+<div class="navbar">
+    <a href="index.html">🏠 Home Profile</a>
+    <a href="chat.html">💬 Glitter Chat Rooms</a>
+</div>
+
+<div class="container">
+    <header>
+        <h1>🎀 PinkSpace 🎀</h1>
+        <p>Your Custom Nostalgic Profile Gateway</p>
+        <div style="background:#fff; padding:8px; border:2px solid #ff69b4; display:inline-block; margin-top:10px;">
+            <input type="text" id="username-input" placeholder="Type profile username..." style="padding:5px;">
+            <button onclick="loadProfile()" style="background:#ff69b4; color:#fff; border:none; padding:6px 12px; cursor:pointer; font-weight:bold;">Load Profile</button>
         </div>
-    </div>
+    </header>
 
-    <!-- Navigation Menu (Links to profile.html page) -->
-    <nav class="main-nav">
-        <a href="index.html" class="nav-item">Home</a>
-        <a href="#" class="nav-item">Browse</a>
-        <a href="#" class="nav-item">Search</a>
-        <a href="#" class="nav-item">Messages</a>
-        <a href="#" class="nav-item">Friends</a>
-        <a href="#" class="nav-item">Chat Rooms</a>
-        <a href="profile.html" class="nav-item">Edit Profile</a>
-    </nav>
+    <div class="columns">
+        <!-- Left Sidebar Structure -->
+        <div class="left-col">
+            <div class="box">
+                <h2>My Profile Pic</h2>
+                <div style="text-align:center;">
+                    <img id="profile-img" src="https://placeholder.com" alt="Profile" style="border: 3px dotted #ff1493; width: 150px; height: 150px; object-fit: cover; background:#fff;">
+                    <br><br>
+                    <input type="file" id="image-uploader" accept="image/*" onchange="uploadImage()">
+                </div>
+            </div>
 
-    <main class="main-content">
-        <!-- Hero Introduction Card -->
-        <div class="box">
-            <div class="box-header-welcome">Welcome to The Aesthetic Portal!</div>
-            <div class="hero-body">
-                <div class="logo-placeholder" style="font-size: 24px;">♥️ the aesthetic portal</div>
-                <h1 class="hero-title">a space for friends ♥️</h1>
-                <p class="hero-description">
-                    A retro Y2K social network. Build a fully customizable profile with your own HTML & CSS, 
-                    add a YouTube or Spotify music player, hang out in themed chat rooms, and make friends the old-school way.
-                </p>
-                <ul class="feature-list">
-                    <li>Deck out your profile with custom HTML/CSS</li>
-                    <li>Embed your favorite tunes with YouTube or Spotify</li>
-                    <li>Join Wiccan, Pagan, Goth, Vampire, Art & more chat rooms</li>
-                    <li>Add friends, message, block – you own your space</li>
-                </ul>
-                <div class="btn-group">
-                    <a href="profile.html" class="btn-cta">Sign Up Free!</a>
-                    <a href="profile.html" class="btn-cta btn-cta-alt">Log In</a>
+            <div class="box">
+                <h2>Customize Layout (HTML/CSS)</h2>
+                <textarea id="user-code-input" placeholder="Example: body { background: black !important; }"></textarea>
+                <button onclick="saveProfile()" style="background:#ff1493; color:white; border:none; padding:8px; cursor:pointer; width:100%; font-weight:bold; margin-top:5px; box-shadow: 2px 2px #4a0026;">Save & Apply Changes</button>
+            </div>
+        </div>
+
+        <!-- Right Core Profile Space -->
+        <div class="right-col">
+            <div class="box">
+                <h2>🎵 Profile Background Track Options</h2>
+                <label for="player-select">Choose layout media players:</label>
+                <select id="player-select" onchange="toggleMusicPlayers()" style="padding:5px; margin-left:10px;">
+                    <option value="both">Both Spotify & YouTube</option>
+                    <option value="spotify">Just Spotify</option>
+                    <option value="youtube">Just YouTube</option>
+                </select>
+                
+                <div id="media-container" style="margin-top:15px;">
+                    <div id="spotify-player">
+                        <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div id="youtube-player" style="margin-top:10px;">
+                        <iframe width="100%" height="200" src="https://youtube.com" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>About Me Space</h2>
+                <div id="profile-html-content">
+                    <p>Enter text or raw code into the textbox to overhaul this custom profile section entirely!</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Featured Network Members Container -->
-        <div class="box box-orange">
-            <div class="box-header box-header-orange">Cool New People</div>
-            <div class="box-body" style="min-height: 50px; color: #888; font-style: italic;">
-                Profiles will load here soon...
-            </div>
-        </div>
-
-        <!-- System Updates Column -->
-        <div class="box">
-            <div class="box-header">Portal Updates</div>
-            <ul class="updates-list">
-                <li>Themed chat rooms are live</li>
-                <li>YouTube & Spotify players on profiles</li>
-                <li>Full HTML/CSS profile customization</li>
-                <li>Verified badges rolling out</li>
-            </ul>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-brand">brought to you by the aesthetic portal ♥</div>
-        <p class="footer-disclaimer">
-            Disclaimer: The Aesthetic Portal is an independent fan project and is not affiliated with, endorsed by, 
-            sponsored by, or connected to MySpace® in any way.
-        </p>
-        <div class="footer-links">
-            <a href="#">About</a> | <a href="#">News</a> | <a href="#">Rules</a> | <a href="#">Privacy</a> | <a href="#">Terms</a>
-        </div>
+    <footer>
+        <p>This website is in no way affiliated with, authorized, maintained, sponsored, or endorsed by MySpace, SpaceHey, or any of their affiliates or subsidiaries. This is an independent, standalone community project.</p>
     </footer>
+</div>
 
+<script>
+    // ⚠️ REPLACE WITH YOUR PROJECT URL AND PUBLIC ANON KEY FROM SUPABASE SETTINGS > API
+    const SUPABASE_URL = "https://supabase.co";
+    const SUPABASE_ANON_KEY = "your-anon-public-key";
+    
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let currentAvatarUrl = "";
+
+    function toggleMusicPlayers() {
+        const choice = document.getElementById('player-select').value;
+        document.getElementById('spotify-player').style.display = (choice === 'both' || choice === 'spotify') ? 'block' : 'none';
+        document.getElementById('youtube-player').style.display = (choice === 'both' || choice === 'youtube') ? 'block' : 'none';
+    }
+
+    async function uploadImage() {
+        const username = document.getElementById('username-input').value.trim();
+        if (!username) return alert("Please type an account username first!");
+        
+        const fileInput = document.getElementById('image-uploader');
+        if (fileInput.files.length === 0) return;
+        const file = fileInput.files[0];
+
+        const fileExtension = file.name.split('.').pop();
+        const filePath = `${username}_${Date.now()}.${fileExtension}`;
+
+        const { data, error } = await supabase.storage
+            .from('avatars')
+            .upload(filePath, file, { cacheControl: '3600', upsert: true });
+
+        if (error) return alert("Upload error: " + error.message);
+
+        const { data: publicData } = supabase.storage.from('avatars').getPublicUrl(filePath);
+        currentAvatarUrl = publicData.publicUrl;
+        document.getElementById('profile-img').src = currentAvatarUrl;
+        alert("Profile picture loaded!");
+    }
+
+    async function saveProfile() {
+        const username = document.getElementById('username-input').value.trim();
+        if (!username) return alert("Please enter a username to save this data under!");
+
+        const codeInput = document.getElementById('user-code-input').value;
+        const musicChoice = document.getElementById('player-select').value;
+
+        // Apply styles to active view immediately
+        document.getElementById('user-custom-styles').innerHTML = codeInput;
+        document.getElementById('profile-html-content').innerHTML = codeInput;
+
+        const { error } = await supabase.from('profiles').upsert({
+            username: username,
+            custom_html_css: codeInput,
+            music_choice: musicChoice,
+            avatar_url: currentAvatarUrl
+        }, { onConflict: 'username' });
+
+        if (error) alert("Database error: " + error.message);
+        else alert("Profile configurations saved to Supabase successfully!");
+    }
+
+    async function loadProfile() {
+        const username = document.getElementById('username-input').value.trim();
+        if (!username) return;
+
+        const { data, error } = await supabase.from('profiles').select('*').eq('username', username).single();
+        
+        if (data) {
+            document.getElementById('user-code-input').value = data.custom_html_css;
+            document.getElementById('player-select').value = data.music_choice;
+            document.getElementById('user-custom-styles').innerHTML = data.custom_html_css;
+            document.getElementById('profile-html-content').innerHTML = data.custom_html_css;
+            if (data.avatar_url) {
+                currentAvatarUrl = data.avatar_url;
+                document.getElementById('profile-img').src = data.avatar_url;
+                }toggleMusicPlayers();} else {alert("No profile found. Type your details and hit save to create this page!");}}
+    ---
+
+### 💬 2. Live Chat Hub Layout (`chat.html`)
+Save this file onto your laptop as `chat.html`. It embeds the Google Translate API widget, dynamically updates room text rules, renders color selection parameters, and syncs messages across the table instantly.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinkSpace - Live Interactive Rooms</title>
+    <!-- Base Google Fonts Target Anchor -->
+    <link id="dynamic-google-font" rel="stylesheet" href="https://googleapis.com">
+    
+    <!-- FREE SUPABASE JS LIBRARY -->
+    <script src="https://jsdelivr.net"></script>
+
+    <style>
+        body { background: #ffc0cb; font-family: Arial, sans-serif; padding: 0; margin: 0; }
+        .navbar { background: #ff1493; padding: 10px; text-align: center; border-bottom: 3px double #fff; }
+        .navbar a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; font-size: 1.1rem; text-shadow: 1px 1px 0px #4a0026; }
+        .navbar a:hover { text-decoration: underline; }
+        
+        .chat-wrap { 
+            max-width: 850px; 
+            margin: 25px auto; 
+            background: white; 
+            border: 4px solid #ff1493; 
+            padding: 20px; 
+            box-shadow: 6px 6px 0px #ff69b4;
+        }
+        .room-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .room-nav button { 
+            background: #ff69b4; 
+            color: white; 
+            border: 2px solid #fff; 
+            padding: 10px 14px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            box-shadow: 2px 2px 0px #4a0026;
+        }
+        .room-nav button:hover { background: #ff1493; }
+        .chat-window { height: 350px; border: 3px inset #ff69b4; background: #fff5f7; overflow-y: scroll; padding: 15px; margin-bottom: 15px; }
+        .controls-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            background: #ffe4e1; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            border: 1px solid #ff69b4;
+        }
+        .input-row { display: flex; gap: 10px; }
+        .input-row input { padding: 10px; border: 2px solid #ff69b4; box-sizing: border-box; }
+        .rules-box { background: #fff0f5; border-left: 6px solid #ff1493; padding: 12px; font-size: 0.95rem; margin-top: 25px; }
+        
+        /* Rainbow Text Keyframe CSS */
+        .rainbow-text { 
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: bold; 
+            display: inline-block; 
+        }
+        footer { margin-top: 25px; text-align: center; font-size: 0.8rem; border-top: 1px dashed #ff1493; padding-top: 10px; color: #7a003e; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html">🏠 Home Profile</a>
+    <a href="chat.html">💬 Glitter Chat Rooms</a>
+</div>
+
+<div class="chat-wrap">
+    <!-- Google Translation Widget Anchor Point -->
+    <div id="google_translate_element" style="float: right;"></div>
+    <h2 style="color: #ff1493; margin-top:0;">✨ PinkSpace Live Rooms ✨</h2>
+
+    <!-- Navigation Hub for Chatrooms -->
+    <div class="room-nav">
+        <button onclick="switchRoom('Main Chat Room')">Room 1: Main</button>
+        <button onclick="switchRoom('Goth Chat Room')">Room 2: Goth</button>
+        <button onclick="switchRoom('Wiccan Chatroom')">Room 3: Wiccan</button>
+        <button onclick="switchRoom('Pagan Chat Room')">Room 4: Pagan</button>
+        <button onclick="switchRoom('Vampire Chatroom')">Room 5: Vampire</button>
+        <button onclick="switchRoom('Political Chatroom')">Room 6: Political</button>
+    </div>
+
+    <h3 id="current-room-title" style="color:#4a0026; border-bottom:1px solid #ff69b4; padding-bottom:5px;">Current: Main Chat Room</h3>
+    <div class="chat-window" id="chat-box"></div>
+
+    <!-- Text Formatting Parameters -->
+    <div class="controls-grid">
+        <div>
+            <label><strong>Font Family Choice:</strong></label><br>
+            <select id="font-selector" onchange="updateFontTarget()" style="padding:4px; margin-top:4px;">
+                <option value="Arial">Standard Arial</option>
+                <option value="VT323">VT323 (Retro Terminal)</option>
+                <option value="Comic Neue">Comic Neue</option>
+                <option value="Creepster">Creepster (Spooky Theme)</option>
+                <option value="Cherry Bomb One">Cherry Bomb</option>
+            </select>
+        </div>
+        <div>
+            <label><strong>Color Wheel Palette:</strong></label><br>
+            <input type="color" id="text-color" value="#ff1493" style="margin-top:4px; cursor:pointer;">
+        </div>
+        <div>
+            <label><strong>Alternative Formatting:</strong></label><br>
+            <input type="checkbox" id="rainbow-toggle" style="margin-top:8px;"> Enable Rainbow Text 🌈
+        </div>
+    </div>
+
+    <!-- Message Inputs -->
+    <div class="input-row">
+        <input type="text" id="chat-user" placeholder="Nickname" style="width: 150px;">
+        <input type="text" id="chat-msg" placeholder="Type message into room logs..." style="flex: 1;">
+        <button onclick="sendMessage()" style="background:#ff1493; color:white; padding:10px 25px; border:none; font-weight:bold; cursor:pointer; box-shadow: 2px 2px 0px #4a0026;">Send</button>
+    </div>
+
+    <!-- Dynamic Rules Context Box -->
+    <div class="rules-box">
+        <h4>📜 Chat Room Rules (<span id="rules-title">Main Chat Room</span>)</h4>
+        <p id="rules-text">Be kind, keep it family friendly, and enjoy the nostalgic glitter vibes!</p>
+    </div>
+
+    <footer>
+        <p>This website is in no way affiliated with, authorized, maintained, sponsored, or endorsed by MySpace, SpaceHey, or any of their affiliates or subsidiaries. This is an independent, standalone community project.</p>
+    </footer>
+</div>
+
+<!-- Google Translate Native Integration Engine -->
+<script type="text/javascript">
+function googleTranslateElementInit() { 
+    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); 
+}
+</script>
+<script type="text/javascript" src="//://google.com"></script>
+
+<script>
+    // ⚠️ REPLACE WITH YOUR PROJECT URL AND PUBLIC ANON KEY FROM SUPABASE SETTINGS > API
+    const SUPABASE_URL = "https://supabase.co";
+    const SUPABASE_ANON_KEY = "your-anon-public-key";
+    
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let currentRoom = 'Main Chat Room';
+
+    const roomData = {
+        'Main Chat Room': 'Be kind, keep it friendly, and enjoy the nostalgic glitter vibes!',
+        'Goth Chat Room': 'Embrace the darkness. Discuss traditional goth bands, fashion, aesthetics, and art. Keep it respectful.',
+        'Wiccan Chatroom': 'Blessed be. Share spells, rituals, lunar alignments, and herbal lore safely.',
+        'Pagan Chat Room': 'Respect all nature-based spiritualities and pantheons. No proselytizing allowed.',
+        'Vampire Chatroom': 'Nightwalkers welcome. Discuss lore, literature, alternative culture, and roleplay rules apply.',
+        'Political Chatroom': 'Debate constructs logically. No hate speech, personal insults, or explicit threats allowed.'
+    };
+
+    function updateFontTarget() {
+        const selectedFont = document.getElementById('font-selector').value;
+        const formattedFontName = selectedFont.replace(/ /g, '+');
+        document.getElementById('dynamic-google-font').href = `https://googleapis.com{formattedFontName}&display=swap`;
+    }
+
+    async function switchRoom(roomName) {
+        currentRoom = roomName;
+        document.getElementById('current-room-title').innerText = 'Current: ' + roomName;
+        document.getElementById('rules-title').innerText = roomName;
+        document.getElementById('rules-text').innerText = roomData[roomName];
+        fetchMessages();
+    }
+
+    async function fetchMessages() {
+        const { data, error } = await supabase
+            .from('chat_messages')
+            .select('*')
+            .eq('room_name', currentRoom)
+            .order('id', { ascending: true });
+            
+        if (data) {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = data.map(m => `<p><strong>${m.username}:</strong> ${m.styled_message}</p>`).join('');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+
+    async function sendMessage() {
+        const user = document.getElementById('chat-user').value.trim() || "Anonymous";
+        const text = document.getElementById('chat-msg').value.trim();
+        if (!text) return;
+
+        const font = document.getElementById('font-selector').value;
+        const color = document.getElementById('text-color').value;
+        const isRainbow = document.getElementById('rainbow-toggle').checked;
+
+        let finalStyle = isRainbow 
+            ? `<span class="rainbow-text" style="font-family:'${font}';">${text}</span>` 
+            : `<span style="font-family:'${font}'; color:${color};">${text}</span>`;
+
+        await supabase.from('chat_messages').insert({
+            room_name: currentRoom,
+            username: user,
+            styled_message: finalStyle
+        });
+
+        document.getElementById('chat-msg').value = "";
+        fetchMessages();
+    }
+
+    // Refresh synchronization loop runs securely every 2 seconds
+    setInterval(fetchMessages, 2000);
+    fetchMessages();
+</script>
 </body>
 </html>
