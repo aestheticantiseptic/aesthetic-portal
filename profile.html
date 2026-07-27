@@ -3,175 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y2K PinkSpace Profile</title>
-    <!-- Google Fonts for Chat & Layout -->
+    <title>PinkSpace - Edit Dashboard</title>
     <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        /* Base Y2K Pink Theme */
-        body {
-            background-color: #ffb6c1;
-            background-image: radial-gradient(#ff69b4 20%, transparent 20%), radial-gradient(#ff69b4 20%, transparent 20%);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            font-family: 'Comic Neue', sans-serif;
-            color: #4a0026;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 950px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px ridge #ff1493;
-            padding: 20px;
-            box-shadow: 5px 5px 0px #ff69b4;
-        }
-        header {
-            text-align: center;
-            border-bottom: 3px dashed #ff1493;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            font-family: 'Cherry Bomb One', cursive;
-            color: #ff1493;
-            font-size: 3.5rem;
-            text-shadow: 2px 2px 0px #fff, 4px 4px 0px #4a0026;
-            margin: 0;
-        }
-        /* Layout Columns */
-        .columns {
-            display: flex;
-            gap: 20px;
-        }
-        .left-col { flex: 1; }
-        .right-col { flex: 2; }
-        .box {
-            border: 2px solid #ff69b4;
-            background: #fff0f5;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        .box h2 {
-            margin-top: 0;
-            background: #ff69b4;
-            color: white;
-            padding: 5px;
-            font-size: 1.2rem;
-        }
-        /* Custom Code Injection Area */
-        #custom-css-output { display: none; }
-        textarea { width: 100%; height: 100px; }
-        
-        /* Footer Disclaimer */
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 0.8rem;
-            border-top: 2px solid #ff1493;
-            padding-top: 10px;
-            color: #7a003e;
-        }
-    </style>
-    <!-- Placeholder for User Custom CSS Injection -->
+    <link rel="stylesheet" href="style.css">
     <style id="user-custom-styles"></style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>🎀 PinkSpace 🎀</h1>
-        <p>Welcome to your nostalgic neon paradise</p>
-    </header>
-
-    <div class="columns">
-        <!-- Left Column: Profile Pic & Customization -->
-        <div class="left-col">
-            <div class="box">
-                <h2>My Profile Pic</h2>
-                <div style="text-align:center;">
-                    <img id="profile-img" src="https://placeholder.com" alt="Profile" style="border: 3px dotted #ff1493; width: 150px; height: 150px; object-fit: cover;">
-                    <br><br>
-                    <input type="file" id="image-uploader" accept="image/*">
-                </div>
-            </div>
-
-            <div class="box">
-                <h2>Customize Page (HTML/CSS)</h2>
-                <p style="font-size:0.8rem;">Enter your custom CSS or HTML below:</p>
-                <textarea id="user-code-input" placeholder="e.g., body { background: purple !important; }"></textarea>
-                <button onclick="applyCustomCode()" style="background:#ff1493; color:white; border:none; padding:5px 10px; cursor:pointer; width:100%; font-weight:bold;">Apply Layout</button>
-            </div>
+    <div class="navbar">
+        <div>
+            <a href="index.html" style="margin-right: 15px;">🏠 Home Profile</a>
+            <a href="chat.html">💬 Glitter Chat Rooms</a>
         </div>
+        <button onclick="logOut()">🚪 Logout</button>
+    </div>
 
-        <!-- Right Column: Music Player & Content -->
-        <div class="right-col">
-            <div class="box">
-                <h2>🎵 My Music Player Choices</h2>
-                <label for="player-select">Choose your vibe player:</label>
-                <select id="player-select" onchange="toggleMusicPlayers()">
-                    <option value="both">Both Spotify & YouTube</option>
-                    <option value="spotify">Just Spotify</option>
-                    <option value="youtube">Just YouTube</option>
-                </select>
-                
-                <div id="media-container" style="margin-top:15px;">
-                    <!-- Embedded Spotify Placeholder -->
-                    <div id="spotify-player" class="player-box">
-                        <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                    <br>
-                    <!-- Embedded YouTube Placeholder -->
-                    <div id="youtube-player" class="player-box">
-                        <iframe width="100%" height="200" src="https://youtube.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="container">
+        <header>
+            <h1>🎀 Space Dashboard 🎀</h1>
+            <p>Customize and manage your nostalgic web presence</p>
+        </header>
+        
+        <div class="columns" style="display:flex; gap:20px;">
+            <div class="left-col" style="width: 300px; flex-shrink:0;">
+                <div class="box">
+                    <h2>My Profile Pic</h2>
+                    <div style="text-align:center;">
+                        <img id="profile-img" src="https://placehold.co" alt="Profile" style="border: 3px dotted #ff1493; width: 150px; height: 150px; object-fit: cover; background: white;">
+                        <br><br>
+                        <input type="file" id="image-uploader" accept="image/*" onchange="uploadProfileImage()">
                     </div>
                 </div>
+                <div class="box">
+                    <h2>Customize Page (HTML/CSS)</h2>
+                    <p style="font-size:0.8rem;">Enter layout rules to customize your space profile section:</p>
+                    <textarea id="user-code-input" placeholder="e.g., body { background: purple !important; }"></textarea>
+                    <button onclick="saveProfileConfiguration()" class="btn-action" style="width:100%;">Save & Apply Layout</button>
+                </div>
             </div>
-
-            <div class="box">
-                <h2>About Me</h2>
-                <div id="profile-html-content">
-                    <p>Edit the box on the left using raw HTML/CSS to completely overhaul this space!</p>
+            
+            <div class="right-col" style="flex-grow:1;">
+                <div class="box">
+                    <h2>🎵 My Music Player Choices</h2>
+                    <label for="player-select">Choose your vibe player:</label>
+                    <select id="player-select" onchange="toggleMusicPlayers()" style="padding:5px; margin-left:10px;">
+                        <option value="both">Both Spotify & YouTube</option>
+                        <option value="spotify">Just Spotify</option>
+                        <option value="youtube">Just YouTube</option>
+                    </select>
+                    <div id="media-container" style="margin-top:15px;">
+                        <div id="spotify-player">
+                            <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                        <div id="youtube-player" style="margin-top:10px;">
+                            <iframe width="100%" height="200" src="https://youtube.com" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <h2>About Me (Live Preview)</h2>
+                    <div id="profile-html-content">
+                        <p>Edit the text configuration parameters inside the text area workspace to overhaul this module view.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>This website is in no way affiliated with, authorized, maintained, sponsored, or endorsed by MySpace, SpaceHey, or any of their affiliates or subsidiaries. This is an independent, standalone community project.</p>
-    </footer>
-</div>
+    <script src="https://jsdelivr.net"></script>
+    <script>
+        const SUPABASE_URL = "https://supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_2DWBfoCYTHLT-hDVvN-Trw_P3PWw6YX";
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-<script>
-    // Handles custom HTML and CSS embedding directly on the page
-    function applyCustomCode() {
-        const input = document.getElementById('user-code-input').value;
-        
-        // Injecting as CSS Styles safely into the designated style tag
-        document.getElementById('user-custom-styles').innerHTML = input;
-        
-        // Treat as raw HTML injection into the profile content section
-        document.getElementById('profile-html-content').innerHTML = input;
-    }
+        let currentAvatarUrl = "";
+        let loggedInUserId = localStorage.getItem("portal_session_id");
 
-    // Handles Dropdown Music Player Options
-    function toggleMusicPlayers() {
-        const choice = document.getElementById('player-select').value;
-        const spotify = document.getElementById('spotify-player');
-        const youtube = document.getElementById('youtube-player');
-
-        if (choice === 'both') {
-            spotify.style.display = 'block';
-            youtube.style.display = 'block';
-        } else if (choice === 'spotify') {
-            spotify.style.display = 'block';
-            youtube.style.display = 'none';
-        } else if (choice === 'youtube') {
-            spotify.style.display = 'none';
-            youtube.style.display = 'block';
+        if (!loggedInUserId) {
+            alert("Please log in first to access your profile editing node!");
+            window.location.href = "login.html";
         }
-    }
-</script>
+
+        async function loadUserDashboardData() {
+            const { data, error } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', loggedInUserId)
+                .maybeSingle();
+
+            if (data) {
+                document.getElementById('user-code-input').value = data.custom_html_css || "";
+                document.getElementById('player-select').value = data.music_choice || "both";
+                
+                if (data.custom_html_css) {
+                    if (data.custom_html_css.includes("{")) {
+                        document.getElementById('user-custom-styles').innerHTML = data.custom_html_css;
+                    } else {
+                        document.getElementById('profile-html-content').innerHTML = `<p>${data.custom_html_css}</p>`;
+                    }
+                }
+                
+                if (data.avatar_url) {
+                    currentAvatarUrl = data.avatar_url;
+                    document.getElementById('profile-img').src = data.avatar_url;
+                }
+                toggleMusicPlayers();
+            }
+        }
+
+        function toggleMusicPlayers() {
+            const choice = document.getElementById('player-select').value;
+            document.getElementById('spotify-player').style.display = (choice === 'both' || choice === 'spotify') ? 'block' : 'none';
+            document.getElementById('youtube-player').style.display = (choice === 'both' || choice === 'youtube') ? 'block' : 'none';
+        }
+
+        async function uploadProfileImage() {
+            const fileInput = document.getElementById('image-uploader');
+            if (fileInput.files.length === 0) return;
+            const file = fileInput.files[0];
+            
+            const fileExtension = file.name.split('.').pop();
+            const filePath = `${loggedInUserId}_${Date.now()}.${fileExtension}`;
+            
+            const { data, error } = await supabase.storage
+                .from('avatars')
+                .upload(filePath, file, { cacheControl: '3600', upsert: true });
+                
+            if (error) return alert("Upload error: " + error.message);
+            
+            const { data: publicData } = supabase.storage.from('avatars').getPublicUrl(filePath);
+            currentAvatarUrl = publicData.publicUrl;
+            document.getElementById('profile-img').src = currentAvatarUrl;
+            alert("Profile image uploaded successfully!");
+        }
+
+        async function saveProfileConfiguration() {
+            const codeInput = document.getElementById('user-code-input').value;
+            const musicChoice = document.getElementById('player-select').value;
+            
+            if (codeInput.includes("{")) {
+                document.getElementById('user-custom-styles').innerHTML = codeInput;
+            } else {
+                document.getElementById('profile-html-content').innerHTML = `<p>${codeInput}</p>`;
+            }
+            
+            const { error } = await supabase.from('profiles').upsert({
+                id: loggedInUserId,
+                custom_html_css: codeInput,
+                music_choice: musicChoice,
+                avatar_url: currentAvatarUrl
+            });
+            
+            if (error) alert("Database sync error: " + error.message);
+            else alert("Configurations successfully written to database!");
+        }
+
+        function logOut() {
+            localStorage.removeItem("portal_session_id");
+            window.location.href = "login.html";
+        }
+
+        loadUserDashboardData();
+    </script>
 </body>
 </html>

@@ -4,32 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>the aesthetic portal - profile paradise</title>
-    <!-- Fonts for Y2K Theme Consistency -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Inline style block catches dynamic CSS rules pasted by profile visitors -->
     <style id="user-custom-styles"></style>
 </head>
 <body>
 
     <canvas id="glitter-canvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
 
-    <!-- RETRO SITE UTILITY BAR (Matches Reference Header Structure) -->
     <div class="site-header-wrapper" style="background-color: #ff007f; padding: 10px 15px; border-bottom: 2px solid #ffffff; box-shadow: 0 4px 0px #d6006a;">
         <div style="max-width: 850px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <!-- Branding Logo matching your pixel heart style -->
             <div style="display: flex; align-items: center; gap: 8px;">
                 <div style="font-size: 1.8rem; color: #ffffff; font-weight: bold; letter-spacing: -1px; line-height: 1; font-family: sans-serif;">
                     💞 <span style="font-style: italic;">the aesthetic portal</span><span style="font-size: 0.7rem; vertical-align: top; color: #fffb00;">.com</span>
                 </div>
             </div>
-            <!-- Chatroom navigation hotlink button anchor -->
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <a href="chat.html" style="color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border: 1px dashed #ffffff;">
-                    💬 Chatrooms
-                </a>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <a href="index.html" style="color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Profile</a>
+                <a href="chat.html" style="color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Chatrooms</a>
+                <a href="login.html" style="color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Login</a>
+                <a href="profile.html" style="color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: bold;">Dashboard</a>
             </div>
-            <!-- Search engine portal row frame -->
             <div style="display: flex; align-items: center;">
                 <input type="text" id="username-input" placeholder="Search The Portal..." style="padding: 5px; width: 180px; border: 1px solid #ffffff; font-size: 0.85rem; border-radius: 0;">
                 <button onclick="loadProfile()" style="background-color: #ffffff; color: #ff007f; border: none; padding: 5px 12px; font-weight: bold; font-size: 0.85rem; cursor: pointer; border-radius: 0; box-shadow: none; margin-left: 2px;">SEARCH</button>
@@ -37,14 +32,12 @@
         </div>
     </div>
 
-    <!-- SUB-NAVIGATION SYSTEM STRIP Links -->
     <div style="background-color: #ffffff; border-bottom: 1px solid #ff007f; padding: 6px 0;">
         <div style="max-width: 850px; margin: 0 auto; text-align: center; font-size: 0.8rem; font-weight: bold; color: #ff007f; font-family: sans-serif;">
             <a href="index.html">Home</a> | <a href="#">Search</a> | <a href="#">Browse</a> | <a href="#">Invite</a> | <a href="#">Film</a> | <a href="#">Mail</a> | <a href="chat.html">Chatrooms</a> | <a href="#">Favorites</a> | <a href="#">Forum</a> | <a href="#">Groups</a> | <a href="#">Events</a> | <a href="#">Videos</a> | <a href="#">Music</a> | <a href="#">Comedy</a>
         </div>
     </div>
 
-    <!-- MAIN PLATFORM FRAME WRAPPER CONTAINER -->
     <div class="profile-container" style="max-width: 850px; margin: 20px auto; background-color: #ffffff; padding: 15px; border: 1px solid #ff007f; box-sizing: border-box;">
         
         <div style="border: 1px solid #ff007f; padding: 12px; display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; margin-bottom: 15px;">
@@ -65,7 +58,6 @@
 
         <div class="columns" style="display: flex; gap: 20px;">
             
-            <!-- LEFT PROFILE BAR NODES COLUMN -->
             <div class="left-col" style="width: 320px; flex-shrink: 0;">
                 <div style="border: 1px solid #ff007f; padding: 15px; text-align: center; background-color: #ffffff; margin-bottom: 15px;">
                     <img id="profile-img" src="https://placehold.co" alt="Main Profile View" style="width: 100%; max-width: 280px; height: auto; border: 1px solid #ff007f; display: block; margin: 0 auto 10px auto;">
@@ -80,9 +72,8 @@
                     </div>
                 </div>
 
-                <!-- DYNAMIC CONTACTING GRID CELL MATRIX TABLE -->
                 <div class="myspace-box" style="border: 1px solid #ff007f; margin-bottom: 15px;">
-                    <h3 style="background-color: #ff007f; color: #ffffff; padding: 5px; margin: 0; font-size: 0.85rem; text-align: center; font-weight: bold;">Contacting ✿</h3>
+                    <h3 style="background-color: #ff007f; color: #ffffff; padding: 5px; margin: 0; font-size: 0.85rem; text-align: center; font-weight: bold; font-family: sans-serif;">Contacting ✿</h3>
                     <div style="padding: 4px; background-color: #fff0f5;">
                         <table style="width: 100%; font-size: 0.8rem; border-collapse: collapse; color: #ff007f;">
                             <tr>
@@ -91,7 +82,7 @@
                             </tr>
                             <tr>
                                 <td style="padding: 6px 4px; border-bottom: 1px solid #ffa3d1;"><a href="#" onclick="alert('Added to favorites!')" style="text-decoration: none; color: #ff007f;">★ Add to Favorites</a></td>
-                                <td style="padding: 6px 4px; border-bottom: 1px solid #ffa3d1;"><a href="#" onclick="blockUserAction()" style="text-decoration: none; color: #7a003e; font-weight: bold;">🚫 Block User</a></td>
+                                <td style="padding: 6px 4px; border-bottom: 1px solid #ffa3d1;"><a href="#" onclick="blockUserAction()" style="text-decoration: none; color: #7a003e; font-weight: bold;">🚫 Block Profile</a></td>
                             </tr>
                             <tr>
                                 <td style="padding: 6px 4px; border-bottom: 1px solid #ffa3d1;"><a href="#" style="text-decoration: none; color: #ff007f;">⏩ Forward to Friends</a></td>
@@ -105,20 +96,17 @@
                     </div>
                 </div>
 
-                <!-- TARGET PATH LINKS URL DISPLAY CONTAINERS (Matches Layout Screenshot) -->
                 <div class="myspace-box" style="border: 1px solid #ff007f; margin-bottom: 15px;">
-                    <h3 id="url-box-header" style="background-color: #ff007f; color: #ffffff; padding: 4px; margin: 0; font-size: 0.8rem; font-weight: bold;">starlight_kitten ✧'s URL:</h3>
+                    <h3 id="url-box-header" style="background-color: #ff007f; color: #ffffff; padding: 4px; margin: 0; font-size: 0.8rem; font-weight: bold; font-family: sans-serif;">starlight_kitten ✧'s URL:</h3>
                     <div style="padding: 8px; background-color: #ffffff; font-size: 0.75rem; border: 1px solid #ffb6c1; word-break: break-all; color: #333;">
                         https://aesthetic-portal.com
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT PROFILE COLUMN BLURBS COLUMN -->
             <div class="right-col" style="flex-grow: 1;">
                 <div id="editor-drawer" class="myspace-box" style="display: none; border: 2px dashed #ff007f; background-color: #fff5f7; padding: 12px; margin-bottom: 15px;">
                     <h4 style="margin: 0 0 5px 0; color: #ff007f; font-size: 1rem;">🔧 Profile Designer Core Node</h4>
                     <p style="font-size: 0.75rem; color: #555; margin: 0 0 8px 0;">Paste custom CSS/HTML design markup layout code variables here to style your platform presence:</p>
                     <textarea id="user-code-input" placeholder="Example: body { background-image: url('glitter.gif') !important; }" style="width: 100%; height: 110px; font-family: monospace; border: 1px solid #ff007f;"></textarea>
                     
-                    <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">

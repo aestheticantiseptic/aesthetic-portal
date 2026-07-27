@@ -4,148 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Aesthetic Portal - Join Network</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .auth-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border: 2px solid #f6409f;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #b30066;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ff85c6;
-            box-sizing: border-box;
-        }
-        .toggle-text {
-            text-align: center;
-            margin-top: 15px;
-            cursor: pointer;
-            color: #ba2d70;
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-
     <div class="utility-bar">
-        <div class="logo-placeholder">♥️ the aesthetic portal</div>
+        <div class="logo-placeholder">🎀 PinkSpace Portal</div>
         <div class="utility-links"><a href="index.html">Back to Home</a></div>
     </div>
-
+    
     <div class="auth-container">
-        <h2 id="authTitle" style="color: #b30066; margin-top: 0; text-align: center;">Log In to the Portal</h2>
+        <h2 id="authTitle" style="color: #ff1493; margin-top: 0; text-align: center;">Log In to the Portal</h2>
         
-        <!-- Interactive Notification Box -->
-        <div id="statusMessage" style="display: none; padding: 10px; margin-bottom: 15px; text-align: center; font-weight: bold;"></div>
-
+        <div id="statusMessage" style="display: none; padding: 10px; margin-bottom: 15px; text-align: center; font-weight: bold; border-radius: 4px;"></div>
+        
         <form id="authForm" onsubmit="event.preventDefault();">
             <div class="form-group" id="usernameGroup" style="display: none;">
                 <label for="regUsername">Choose Username:</label>
                 <input type="text" id="regUsername" placeholder="e.g., retrofoxy85">
             </div>
-            
             <div class="form-group">
                 <label for="authEmail">Email Address:</label>
                 <input type="email" id="authEmail" required placeholder="yourname@email.com">
             </div>
-
             <div class="form-group">
                 <label for="authPassword">Password:</label>
                 <input type="password" id="authPassword" required placeholder="••••••••">
             </div>
-
-            <button type="submit" id="submitAuthBtn" class="btn-cta" style="width: 100%; padding: 10px;">Log In</button>
+            <button type="submit" id="submitAuthBtn" class="btn-cta">Log In</button>
         </form>
-
         <div id="toggleViewLink" class="toggle-text">Don't have an account? Sign Up Free!</div>
     </div>
 
-    <!-- Include the Supabase Driver Link -->
     <script src="https://jsdelivr.net"></script>
     <script>
         const SUPABASE_URL = "https://supabase.co";
-        const SUPABASE_KEY = "sb_publishable_2DWBfoCYTHLT-hdvVN-Trw_P3PWw6YX";
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const SUPABASE_ANON_KEY = "sb_publishable_2DWBfoCYTHLT-hDVvN-Trw_P3PWw6YX";
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let isSignUpView = false;
-
         const authTitle = document.getElementById("authTitle");
         const usernameGroup = document.getElementById("usernameGroup");
         const submitAuthBtn = document.getElementById("submitAuthBtn");
         const toggleViewLink = document.getElementById("toggleViewLink");
         const statusMessage = document.getElementById("statusMessage");
 
-        // Swap between Account Creation view and Logging In view
         toggleViewLink.addEventListener("click", () => {
             isSignUpView = !isSignUpView;
+            statusMessage.style.display = "none";
             if (isSignUpView) {
                 authTitle.textContent = "Create Free Account";
                 usernameGroup.style.display = "block";
+                document.getElementById("regUsername").required = true;
                 submitAuthBtn.textContent = "Sign Up & Launch Profile";
                 toggleViewLink.textContent = "Already a member? Log In here";
             } else {
                 authTitle.textContent = "Log In to the Portal";
                 usernameGroup.style.display = "none";
+                document.getElementById("regUsername").required = false;
                 submitAuthBtn.textContent = "Log In";
                 toggleViewLink.textContent = "Don't have an account? Sign Up Free!";
             }
         });
 
-        // Process actual registration and logging entries via cloud pipeline
         document.getElementById("authForm").addEventListener("submit", async () => {
             const email = document.getElementById("authEmail").value;
             const password = document.getElementById("authPassword").value;
-            const username = document.getElementById("regUsername").value;
-
+            const username = document.getElementById("regUsername").value.trim();
+            
             statusMessage.style.display = "block";
             statusMessage.style.background = "#fff3cd";
             statusMessage.style.color = "#856404";
             statusMessage.textContent = "Connecting to database node...";
 
             if (isSignUpView) {
-                // 1. RUN SECURITY ACCOUNT REGISTER PIPELINE
+                if (!username) {
+                    showError("Please pick a custom account username!");
+                    return;
+                }
+                
                 const { data, error } = await supabase.auth.signUp({ email, password });
                 
                 if (error) {
                     showError(error.message);
                     return;
                 }
-
-                if (data.user) {
-                    // 2. INJECT NEW USER DATA INSTANTLY INTO PROFILES DATA ROW
+                
+                if (data && data.user) {
                     const { error: profileError } = await supabase
                         .from('profiles')
-                        .insert({ id: data.user.id, username: username });
-
+                        .upsert({ 
+                            username: username,
+                            custom_html_css: "Welcome to my profile!",
+                            music_choice: "both"
+                        });
+                        
                     if (profileError) {
                         showError("Account made, but profile generation hit an issue: " + profileError.message);
                     } else {
-                        showSuccess("Success! Check your email inbox to confirm your account subscription registration.");
+                        showSuccess("Success! Check your email inbox to confirm your account registration.");
                     }
+                } else {
+                    showError("Registration pipeline failed.");
                 }
             } else {
-                // 3. SECURELY ATTEMPT LOGIN FOR EXISTING USER
                 const { data, error } = await supabase.auth.signInWithPassword({ email, password });
                 
                 if (error) {
                     showError(error.message);
                 } else {
-                    showSuccess("Access Granted! Redirecting to network dashboard workspace...");
-                    // Store user token details temporarily inside memory cache
-                    localStorage.setItem("portal_session_id", data.user.id);
-                    setTimeout(() => { window.location.href = "profile.html"; }, 1500);
+                    showSuccess("Access Granted! Redirecting...");
+                    if(data.user) {
+                        localStorage.setItem("portal_session_id", data.user.id);
+                    }
+                    setTimeout(() => {
+                        window.location.href = "profile.html";
+                    }, 1500);
                 }
             }
         });
