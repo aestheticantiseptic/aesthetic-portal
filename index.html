@@ -207,8 +207,7 @@
             if (data.avatar_url) {
                 currentAvatarUrl = data.avatar_url;
                 document.getElementById('profile-img').src = data.avatar_url;
-                }toggleMusicPlayers();} else {alert("No profile found. Type your details and hit save to create this page!");}}
-    ---
+---
 
 ### 💬 2. Live Chat Hub Layout (`chat.html`)
 Save this file onto your laptop as `chat.html`. It embeds the Google Translate API widget, dynamically updates room text rules, renders color selection parameters, and syncs messages across the table instantly.
@@ -420,6 +419,6 @@ function googleTranslateElementInit() {
     // Refresh synchronization loop runs securely every 2 seconds
     setInterval(fetchMessages, 2000);
     fetchMessages();
-</script>
+    </script>
 </body>
 </html>
