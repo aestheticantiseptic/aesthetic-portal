@@ -93,8 +93,15 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//://google.com"></script>
 
+<script src="https://jsdelivr.net"></script>
 <script>
-    // Room rules directory object
+    // 🎀 DATABASE CONNECTION VARIABLES
+    const SUPABASE_URL = "https://supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_2DWBfoCYTHLT-hDVvN-Trw_P3PWw6YX";
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentRoom = 'Main Chat Room';
+
     const roomData = {
         'Main Chat Room': 'Be kind, keep it friendly, and enjoy the nostalgic glitter vibes!',
         'Goth Chat Room': 'Embrace the darkness. Discuss traditional goth bands, fashion, aesthetics, and art. Keep it respectful.',
@@ -104,42 +111,65 @@ function googleTranslateElementInit() {
         'Political Chatroom': 'Debate constructs logically. No hate speech, personal insults, or explicit threats allowed.'
     };
 
-    function switchRoom(roomName) {
-        document.getElementById('current-room-title').innerText = 'Current: ' + roomName;
-        document.getElementById('rules-title').innerText = roomName;
-        document.getElementById('rules-text').innerText = roomData[roomName];
-        document.getElementById('chat-box').innerHTML += `<p style="color:gray; font-style:italic;">[System]: Switched to ${roomName}</p>`;
-    }
-
-    // Fetches and updates dynamic font dependencies from Google Fonts
     function updateFontTarget() {
         const selectedFont = document.getElementById('font-selector').value;
         const formattedFontName = selectedFont.replace(/ /g, '+');
         document.getElementById('dynamic-google-font').href = `https://googleapis.com{formattedFontName}&display=swap`;
     }
 
-    function sendMessage() {
+    async function switchRoom(roomName) {
+        currentRoom = roomName;
+        document.getElementById('current-room-title').innerText = 'Current: ' + roomName;
+        document.getElementById('rules-title').innerText = roomName;
+        document.getElementById('rules-text').innerText = roomData[roomName];
+        fetchMessages();
+    }
+
+    // Pulls messages directly from your live database
+    async function fetchMessages() {
+        const { data, error } = await supabase
+            .from('chat_messages')
+            .select('*')
+            .eq('room_name', currentRoom)
+            .order('id', { ascending: true });
+
+        if (data) {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = data.map(m => `<p><strong>${m.username}:</strong> ${m.styled_message}</p>`).join('');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+
+    // Sends your message to your cloud database table
+    async function sendMessage() {
+        const user = document.getElementById('chat-user')?.value.trim() || "Anonymous";
         const msgInput = document.getElementById('chat-msg');
         const text = msgInput.value.trim();
+        
         if(!text) return;
 
-        const chatBox = document.getElementById('chat-box');
         const font = document.getElementById('font-selector').value;
         const color = document.getElementById('text-color').value;
         const isRainbow = document.getElementById('rainbow-toggle').checked;
-
-        let styledMessage = "";
         
+        let styledMessage = "";
         if (isRainbow) {
             styledMessage = `<span class="rainbow-text" style="font-family: '${font}';">${text}</span>`;
         } else {
             styledMessage = `<span style="font-family: '${font}'; color: ${color};">${text}</span>`;
         }
 
-        chatBox.innerHTML += `<p><strong>User:</strong> ${styledMessage}</p>`;
+        await supabase.from('chat_messages').insert({
+            room_name: currentRoom,
+            username: user,
+            styled_message: styledMessage
+        });
+
         msgInput.value = "";
-        chatBox.scrollTop = chatBox.scrollHeight;
+        fetchMessages();
     }
+
+    // Auto-refresh script loops every 2 seconds
+    setInterval(fetchMessages, 2000);
+    fetchMessages();
 </script>
-</body>
-</html>
