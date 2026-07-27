@@ -3,370 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kawaiifoxy1985's Profile</title>
+    <title>Y2K PinkSpace Profile</title>
+    <!-- Google Fonts for Chat & Layout -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Global Retro Styles */
+        /* Base Y2K Pink Theme */
         body {
-            background-color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;
-            color: #000000;
+            background-color: #ffb6c1;
+            background-image: radial-gradient(#ff69b4 20%, transparent 20%), radial-gradient(#ff69b4 20%, transparent 20%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            font-family: 'Comic Neue', sans-serif;
+            color: #4a0026;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
-
-        /* Top Pink Navigation Bar */
-        .top-nav {
-            background-color: #ff3399;
-            color: #ffffff;
-            padding: 12px 10px;
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px ridge #ff1493;
+            padding: 20px;
+            box-shadow: 5px 5px 0px #ff69b4;
+        }
+        header {
+            text-align: center;
+            border-bottom: 3px dashed #ff1493;
+            padding-bottom: 10px;
             margin-bottom: 20px;
         }
-
-        .nav-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        header h1 {
+            font-family: 'Cherry Bomb One', cursive;
+            color: #ff1493;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 0px #fff, 4px 4px 0px #4a0026;
+            margin: 0;
         }
-
-        .logo {
-            font-size: 14px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .top-nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0 5px;
-        }
-
-        .top-nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Sub Nav Link Strip */
-        .sub-nav {
-            max-width: 800px;
-            margin: -10px auto 20px auto;
-            padding: 0 10px;
-            text-align: right;
-            font-size: 11px;
-        }
-
-        .sub-nav a {
-            color: #ff3399;
-            text-decoration: none;
-        }
-
-        /* Parent Container Layout */
-        .profile-container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Layout Columns */
+        .columns {
             display: flex;
             gap: 20px;
-            padding: 0 10px 40px 10px;
         }
-
-        /* Left column is narrow (300px) */
-        .left-col {
-            width: 300px;
-            flex-shrink: 0;
-        }
-
-        /* Right column fills remaining space */
-        .right-col {
-            flex-grow: 1;
-        }
-
-        /* Myspace Box Tables */
-        .myspace-box {
-            border: 2px solid #ff66b2;
-            margin-bottom: 20px;
-            width: 100%;
-            background-color: #ffffff;
-        }
-
-        .myspace-box h3 {
-            background-color: #ffccff;
-            color: #cc0066;
-            margin: 0;
-            padding: 5px 8px;
-            font-size: 12px;
-            font-weight: bold;
-            border-bottom: 1px solid #ff66b2;
-        }
-
-        .box-content {
-            padding: 10px;
-        }
-
-        /* Links styling */
-        a {
-            color: #cc0066;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Profile Main Box styling */
-        .profile-main-box {
-            text-align: center;
+        .left-col { flex: 1; }
+        .right-col { flex: 2; }
+        .box {
+            border: 2px solid #ff69b4;
+            background: #fff0f5;
             padding: 15px;
-        }
-
-        .profile-name {
-            font-size: 18px;
-            color: #cc0066;
-            font-weight: bold;
-            margin: 0 0 10px 0;
-        }
-
-        .profile-pic {
-            width: 150px;
-            height: auto;
-            border: 1px solid #ff66b2;
-            margin-bottom: 8px;
-        }
-
-        .profile-tagline {
-            font-style: italic;
-            color: #666666;
-            margin: 5px 0 0 0;
-        }
-
-        /* Details info table layout */
-        .details-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 5px;
-        }
-
-        .details-table td {
-            padding: 4px;
-            vertical-align: top;
-        }
-
-        .details-label {
-            color: #cc0066;
-            font-weight: bold;
-            width: 40%;
-        }
-
-        /* Contact Table Layout */
-        .contact-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .contact-table td {
-            width: 50%;
-            padding: 6px 4px;
-            font-size: 11px;
-        }
-
-        /* Interests Table Layout */
-        .interests-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .interests-table td {
-            padding: 6px;
-            vertical-align: top;
-            border-bottom: 1px solid #ffe6f2;
-        }
-
-        .interests-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .label-cell {
-            background-color: #ffe6f2;
-            color: #cc0066;
-            font-weight: bold;
-            width: 30%;
-        }
-
-        /* Extended Network Banner Banner styling */
-        .network-banner {
-            border: 2px solid #ff66b2;
-            text-align: center;
-            padding: 12px;
-            font-size: 13px;
             margin-bottom: 20px;
+            border-radius: 8px;
         }
-
-        /* Top 8 Friends Layout Grid */
-        .top8-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+        .box h2 {
+            margin-top: 0;
+            background: #ff69b4;
+            color: white;
+            padding: 5px;
+            font-size: 1.2rem;
+        }
+        /* Custom Code Injection Area */
+        #custom-css-output { display: none; }
+        textarea { width: 100%; height: 100px; }
+        
+        /* Footer Disclaimer */
+        footer {
+            margin-top: 30px;
             text-align: center;
-            margin-top: 10px;
-        }
-
-        .friend-card p {
-            margin: 0 0 4px 0;
-            font-size: 11px;
-        }
-
-        .friend-card img {
-            border: 1px solid #ff66b2;
-            width: 100%;
-            max-width: 80px;
-            height: auto;
-        }
-
-        /* Comments Block Layout */
-        .comment-count {
-            margin: 0 0 10px 0;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .highlight-text {
-            color: #cc0066;
-        }
-
-        .comments-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;
-        }
-
-        .comments-table tr {
-            background-color: #ffe6f2;
-        }
-
-        .comment-user {
-            width: 90px;
-            text-align: center;
-            vertical-align: top;
-            padding: 10px;
-        }
-
-        .comment-user img {
-            border: 1px solid #ff66b2;
-            max-width: 65px;
-            height: auto;
-        }
-
-        .comment-user p {
-            margin: 0 0 5px 0;
-            font-weight: bold;
-        }
-
-        .comment-text {
-            vertical-align: top;
-            padding: 10px;
-            background-color: #ffffff;
-            border: 1px solid #ffe6f2;
-        }
-
-        .comment-date {
-            font-size: 10px;
-            color: #666666;
-            margin: 0 0 8px 0;
-            font-weight: bold;
+            font-size: 0.8rem;
+            border-top: 2px solid #ff1493;
+            padding-top: 10px;
+            color: #7a003e;
         }
     </style>
+    <!-- Placeholder for User Custom CSS Injection -->
+    <style id="user-custom-styles"></style>
 </head>
 <body>
 
-    <!-- Pink Top Nav -->
-    <header class="top-nav">
-        <div class="nav-container">
-            <span class="logo">❤️ the aesthetic portal</span>
-            <nav>
-                <a href="index.html">Home</a> | 
-                <a href="#">Browse</a> | 
-                <a href="#">Search</a> | 
-                <a href="#">Messages</a> | 
-                <a href="#">Friends</a> | 
-                <a href="#">Chat Rooms</a>
-            </nav>
-        </div>
+<div class="container">
+    <header>
+        <h1>🎀 PinkSpace 🎀</h1>
+        <p>Welcome to your nostalgic neon paradise</p>
     </header>
 
-    <!-- Sub-navigation links right under header -->
-    <div class="sub-nav">
-        <a href="#">Help</a> | <a href="login.html">Sign Up / Login</a>
+    <div class="columns">
+        <!-- Left Column: Profile Pic & Customization -->
+        <div class="left-col">
+            <div class="box">
+                <h2>My Profile Pic</h2>
+                <div style="text-align:center;">
+                    <img id="profile-img" src="https://placeholder.com" alt="Profile" style="border: 3px dotted #ff1493; width: 150px; height: 150px; object-fit: cover;">
+                    <br><br>
+                    <input type="file" id="image-uploader" accept="image/*">
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>Customize Page (HTML/CSS)</h2>
+                <p style="font-size:0.8rem;">Enter your custom CSS or HTML below:</p>
+                <textarea id="user-code-input" placeholder="e.g., body { background: purple !important; }"></textarea>
+                <button onclick="applyCustomCode()" style="background:#ff1493; color:white; border:none; padding:5px 10px; cursor:pointer; width:100%; font-weight:bold;">Apply Layout</button>
+            </div>
+        </div>
+
+        <!-- Right Column: Music Player & Content -->
+        <div class="right-col">
+            <div class="box">
+                <h2>🎵 My Music Player Choices</h2>
+                <label for="player-select">Choose your vibe player:</label>
+                <select id="player-select" onchange="toggleMusicPlayers()">
+                    <option value="both">Both Spotify & YouTube</option>
+                    <option value="spotify">Just Spotify</option>
+                    <option value="youtube">Just YouTube</option>
+                </select>
+                
+                <div id="media-container" style="margin-top:15px;">
+                    <!-- Embedded Spotify Placeholder -->
+                    <div id="spotify-player" class="player-box">
+                        <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <br>
+                    <!-- Embedded YouTube Placeholder -->
+                    <div id="youtube-player" class="player-box">
+                        <iframe width="100%" height="200" src="https://youtube.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>About Me</h2>
+                <div id="profile-html-content">
+                    <p>Edit the box on the left using raw HTML/CSS to completely overhaul this space!</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Main Workspace Container -->
-    <main class="profile-container">
+    <footer>
+        <p>This website is in no way affiliated with, authorized, maintained, sponsored, or endorsed by MySpace, SpaceHey, or any of their affiliates or subsidiaries. This is an independent, standalone community project.</p>
+    </footer>
+</div>
 
-        <!-- LEFT COLUMN -->
-        <div class="left-col">
-            
-            <!-- Main Photo Card Box -->
-            <div class="myspace-box">
-                <div class="profile-main-box">
-                    <p class="profile-name">kawaiifoxy1985</p>
-                    <!-- Your pink smiley profile graphic -->
-                    <img src="https://imgur.com" alt="Profile Picture" class="profile-pic">
-                    <p class="profile-tagline">"A space for friends!"</p>
-                    <p style="font-size: 10px; margin: 10px 0 0 0; color: #666666;">Last Login: 7/26/2026</p>
-                </div>
-            </div>
+<script>
+    // Handles custom HTML and CSS embedding directly on the page
+    function applyCustomCode() {
+        const input = document.getElementById('user-code-input').value;
+        
+        // Injecting as CSS Styles safely into the designated style tag
+        document.getElementById('user-custom-styles').innerHTML = input;
+        
+        // Treat as raw HTML injection into the profile content section
+        document.getElementById('profile-html-content').innerHTML = input;
+    }
 
-            <!-- Contact Box Container -->
-            <div class="myspace-box">
-                <h3>Contacting kawaiifoxy1985</h3>
-                <div class="box-content">
-                    <table class="contact-table">
-                        <tr>
-                            <td><a href="#">✉ Send Message</a></td>
-                            <td><a href="#">⭐ Forward to Friends</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">➕ Add to Friends</a></td>
-                            <td><a href="#">📁 Add to Favorites</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">💬 Instant Message</a></td>
-                            <td><a href="#">🚫 Block User</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">📧 Add to Group</a></td>
-                            <td><a href="#">🚩 Rank User</a></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+    // Handles Dropdown Music Player Options
+    function toggleMusicPlayers() {
+        const choice = document.getElementById('player-select').value;
+        const spotify = document.getElementById('spotify-player');
+        const youtube = document.getElementById('youtube-player');
 
-            <!-- Profile Info Details Grid -->
-            <div class="myspace-box">
-                <h3>kawaiifoxy1985's Details</h3>
-                <div class="box-content">
-                    <table class="details-table">
-                        <tr>
-                            <td class="details-label">Gender:</td>
-                            <td>Female</td>
-                        </tr>
-                        <tr>
-                            <td class="details-label">Age:</td>
-                            <td>41</td>
-                        </tr>
-                        <tr>
-                            <td class="details-label">Location:</td>
-                            <td>Usa</td>
-                        </tr>
-                        <tr>
-                            <td class="details-label">Status:</td>
-                            <td>Taken</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Interests Box (Table Structure) -->
-            <div class="myspace-box">
+        if (choice === 'both') {
+            spotify.style.display = 'block';
+            youtube.style.display = 'block';
+        } else if (choice === 'spotify') {
+            spotify.style.display = 'block';
+            youtube.style.display = 'none';
+        } else if (choice === 'youtube') {
+            spotify.style.display = 'none';
+            youtube.style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>
