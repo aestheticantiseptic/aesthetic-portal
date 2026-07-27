@@ -3,146 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile Page</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- This empty block will automatically load custom CSS styles added by users -->
-    <style id="userCustomStyles"></style>
+    <title>kawaiifoxy1985's Profile</title>
+    <style>
+        /* Global Retro Styles */
+        body {
+            background-color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top Pink Navigation Bar */
+        .top-nav {
+            background-color: #ff3399;
+            color: #ffffff;
+            padding: 12px 10px;
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .top-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 5px;
+        }
+
+        .top-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sub Nav Link Strip */
+        .sub-nav {
+            max-width: 800px;
+            margin: -10px auto 20px auto;
+            padding: 0 10px;
+            text-align: right;
+            font-size: 11px;
+        }
+
+        .sub-nav a {
+            color: #ff3399;
+            text-decoration: none;
+        }
+
+        /* Parent Container Layout */
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            padding: 0 10px 40px 10px;
+        }
+
+        /* Left column is narrow (300px) */
+        .left-col {
+            width: 300px;
+            flex-shrink: 0;
+        }
+
+        /* Right column fills remaining space */
+        .right-col {
+            flex-grow: 1;
+        }
+
+        /* Myspace Box Tables */
+        .myspace-box {
+            border: 2px solid #ff66b2;
+            margin-bottom: 20px;
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        .myspace-box h3 {
+            background-color: #ffccff;
+            color: #cc0066;
+            margin: 0;
+            padding: 5px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            border-bottom: 1px solid #ff66b2;
+        }
+
+        .box-content {
+            padding: 10px;
+        }
+
+        /* Links styling */
+        a {
+            color: #cc0066;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Profile Main Box styling */
+        .profile-main-box {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            color: #cc0066;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: auto;
+            border: 1px solid #ff66b2;
+            margin-bottom: 8px;
+        }
+
+        .profile-tagline {
+            font-style: italic;
+            color: #666666;
+            margin: 5px 0 0 0;
+        }
+
+        /* Details info table layout */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .details-table td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .details-label {
+            color: #cc0066;
+            font-weight: bold;
+            width: 40%;
+        }
+
+        /* Contact Table Layout */
+        .contact-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .contact-table td {
+            width: 50%;
+            padding: 6px 4px;
+            font-size: 11px;
+        }
+
+        /* Interests Table Layout */
+        .interests-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .interests-table td {
+            padding: 6px;
+            vertical-align: top;
+            border-bottom: 1px solid #ffe6f2;
+        }
+
+        .interests-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .label-cell {
+            background-color: #ffe6f2;
+            color: #cc0066;
+            font-weight: bold;
+            width: 30%;
+        }
+
+        /* Extended Network Banner Banner styling */
+        .network-banner {
+            border: 2px solid #ff66b2;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        /* Top 8 Friends Layout Grid */
+        .top8-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .friend-card p {
+            margin: 0 0 4px 0;
+            font-size: 11px;
+        }
+
+        .friend-card img {
+            border: 1px solid #ff66b2;
+            width: 100%;
+            max-width: 80px;
+            height: auto;
+        }
+
+        /* Comments Block Layout */
+        .comment-count {
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .highlight-text {
+            color: #cc0066;
+        }
+
+        .comments-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .comments-table tr {
+            background-color: #ffe6f2;
+        }
+
+        .comment-user {
+            width: 90px;
+            text-align: center;
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .comment-user img {
+            border: 1px solid #ff66b2;
+            max-width: 65px;
+            height: auto;
+        }
+
+        .comment-user p {
+            margin: 0 0 5px 0;
+            font-weight: bold;
+        }
+
+        .comment-text {
+            vertical-align: top;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ffe6f2;
+        }
+
+        .comment-date {
+            font-size: 10px;
+            color: #666666;
+            margin: 0 0 8px 0;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Main Navigation Ribbon Header -->
-    <div class="utility-bar">
-        <div class="logo-placeholder">♥️ the aesthetic portal</div>
-        <div class="utility-links">
-            <a href="index.html">Home</a> | <a href="#" id="toggleEditBtn">Edit Profile Form</a>
+    <!-- Pink Top Nav -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <span class="logo">❤️ the aesthetic portal</span>
+            <nav>
+                <a href="index.html">Home</a> | 
+                <a href="#">Browse</a> | 
+                <a href="#">Search</a> | 
+                <a href="#">Messages</a> | 
+                <a href="#">Friends</a> | 
+                <a href="#">Chat Rooms</a>
+            </nav>
         </div>
+    </header>
+
+    <!-- Sub-navigation links right under header -->
+    <div class="sub-nav">
+        <a href="#">Help</a> | <a href="login.html">Sign Up / Login</a>
     </div>
 
-    <!-- Interactive Edit Panel Drawer Overlay (Hidden by Default) -->
-    <div id="editProfileDrawer" style="display: none; background: #fff; border: 2px solid #f6409f; max-width: 500px; margin: 15px auto; padding: 15px;">
-        <h3 style="color: #b30066; margin-top: 0;">🔧 Edit Profile Control Center</h3>
-        
-        <label style="display:block; margin-bottom: 5px; font-weight:bold;">Profile Display Name:</label>
-        <input type="text" id="inputUsername" value="kawaiifoxy1985" style="width:100%; padding:5px; margin-bottom:12px;">
+    <!-- Main Workspace Container -->
+    <main class="profile-container">
 
-        <label style="display:block; margin-bottom: 5px; font-weight:bold;">Upload Profile Image File:</label>
-        <input type="file" id="imageFileInput" accept="image/*" style="margin-bottom:12px;">
-
-        <label style="display:block; margin-bottom: 5px; font-weight:bold;">About Me Text Blurb:</label>
-        <textarea id="inputAboutMe" style="width:100%; height:60px; margin-bottom:12px;">(nothing here yet)</textarea>
-
-        <label style="display:block; margin-bottom: 5px; font-weight:bold;">Myspace-Style Custom HTML / CSS Code Blocks:</label>
-        <textarea id="inputCustomCode" placeholder="Type background colors, glitter rules, or styles here..." style="width:100%; height:100px; font-family:monospace; margin-bottom:12px;"></textarea>
-
-        <button id="saveProfileBtn" class="btn-cta" style="width:100%;">Save Changes & Update Network</button>
-    </div>
-
-    <!-- Main Layout Content Structure -->
-    <main class="main-content" style="max-width: 500px;">
-        
-        <div class="login-banner">Last Login: <span id="displayLastLogin">7/26/2026</span></div>
-
-        <!-- Profile Hero Avatar Banner Card -->
-        <div class="box ID-profile-card">
-            <div class="box-body" style="text-align: center;">
-                <h2 id="displayUsername" style="font-size: 18px; margin: 5px 0 10px 0; color: #b30066;">kawaiifoxy1985</h2>
-                <div style="margin-bottom: 10px; display: flex; justify-content: center;">
-                    <div id="avatarFrame" style="width: 170px; height: 200px; border: 1px solid #000; background: #ff85c6; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                        <!-- Fallback avatar icon -->
-                        <svg id="fallbackSvg" width="170" height="200" viewBox="0 0 170 200">
-                            <rect x="35" y="50" width="20" height="30" fill="#000" /><rect x="115" y="50" width="20" height="30" fill="#000" />
-                            <rect x="35" y="130" width="20" height="20" fill="#000" /><rect x="115" y="130" width="20" height="20" fill="#000" />
-                            <rect x="55" y="150" width="60" height="20" fill="#000" />
-                        </svg>
-                        <img id="profileImageDisplay" src="" style="display:none; width:100%; height:100%; object-fit:cover;">
-                    </div>
-                </div>
-                <div class="headline-quote" style="font-style: italic; color: #666;">"A space for friends!"</div>
-            </div>
-        </div>
-
-        <!-- Contact Options Info Frame -->
-        <div class="box ID-contact-card">
-            <div class="box-header">Contacting <span class="text-user-name">kawaiifoxy1985</span></div>
-            <div class="box-body">Add to Friends | Send Message | Instant Chat</div>
-        </div>
-
-        <!-- Personal Text Blurbs Showcase Panel -->
-        <div class="box box-orange ID-blurbs-card">
-            <div class="box-header box-header-orange"><span class="text-user-name">kawaiifoxy1985</span>'s Blurbs</div>
-            <div class="box-body">
-                <div class="sub-title">About me:</div>
-                <div id="displayAboutMe">(nothing here yet)</div>
-            </div>
-        </div>
-
-        <!-- User Top 8 Friends Layout Space -->
-        <div class="box box-orange ID-top8-card">
-            <div class="box-header box-header-orange"><span class="text-user-name">kawaiifoxy1985</span>'s Friend Space</div>
-            <div class="box-body">
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; margin-top:10px;">
-                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Tom</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#ffcc80; margin-top:4px;"></div></div>
-                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Amy</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#ffccd8; margin-top:4px;"></div></div>
-                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Pixel</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#e0f7fa; margin-top:4px;"></div></div>
-                    <div><span style="font-size:11px; font-weight:bold; color:#b30066;">Goth</span><div style="width:100%; aspect-ratio:1; border:1px solid #000; background:#f3e5f5; margin-top:4px;"></div></div>
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+            
+            <!-- Main Photo Card Box -->
+            <div class="myspace-box">
+                <div class="profile-main-box">
+                    <p class="profile-name">kawaiifoxy1985</p>
+                    <!-- Your pink smiley profile graphic -->
+                    <img src="https://imgur.com" alt="Profile Picture" class="profile-pic">
+                    <p class="profile-tagline">"A space for friends!"</p>
+                    <p style="font-size: 10px; margin: 10px 0 0 0; color: #666666;">Last Login: 7/26/2026</p>
                 </div>
             </div>
-        </div>
 
-    </main>
+            <!-- Contact Box Container -->
+            <div class="myspace-box">
+                <h3>Contacting kawaiifoxy1985</h3>
+                <div class="box-content">
+                    <table class="contact-table">
+                        <tr>
+                            <td><a href="#">✉ Send Message</a></td>
+                            <td><a href="#">⭐ Forward to Friends</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">➕ Add to Friends</a></td>
+                            <td><a href="#">📁 Add to Favorites</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">💬 Instant Message</a></td>
+                            <td><a href="#">🚫 Block User</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">📧 Add to Group</a></td>
+                            <td><a href="#">🚩 Rank User</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-    <!-- Interactive Custom Layout Controller Data Script Engine -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const toggleEditBtn = document.getElementById("toggleEditBtn");
-            const editDrawer = document.getElementById("editProfileDrawer");
-            const saveProfileBtn = document.getElementById("saveProfileBtn");
+            <!-- Profile Info Details Grid -->
+            <div class="myspace-box">
+                <h3>kawaiifoxy1985's Details</h3>
+                <div class="box-content">
+                    <table class="details-table">
+                        <tr>
+                            <td class="details-label">Gender:</td>
+                            <td>Female</td>
+                        </tr>
+                        <tr>
+                            <td class="details-label">Age:</td>
+                            <td>41</td>
+                        </tr>
+                        <tr>
+                            <td class="details-label">Location:</td>
+                            <td>Usa</td>
+                        </tr>
+                        <tr>
+                            <td class="details-label">Status:</td>
+                            <td>Taken</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-            // Form inputs
-            const inputUsername = document.getElementById("inputUsername");
-            const imageFileInput = document.getElementById("imageFileInput");
-            const inputAboutMe = document.getElementById("inputAboutMe");
-            const inputCustomCode = document.getElementById("inputCustomCode");
-
-            // Display targets
-            const displayUsername = document.getElementById("displayUsername");
-            const profileImageDisplay = document.getElementById("profileImageDisplay");
-            const fallbackSvg = document.getElementById("fallbackSvg");
-            const displayAboutMe = document.getElementById("displayAboutMe");
-            const userCustomStyles = document.getElementById("userCustomStyles");
-            const userNameLabels = document.querySelectorAll(".text-user-name");
-
-            // Show or hide the input editing form drawer
-            toggleEditBtn.addEventListener("click", () => {
-                editDrawer.style.display = editDrawer.style.display === "none" ? "block" : "none";
-            });
-
-            // Handle client updates
-            saveProfileBtn.addEventListener("click", () => {
-                // Update text configurations
-                displayUsername.textContent = inputUsername.value;
-                displayAboutMe.textContent = inputAboutMe.value;
-                userNameLabels.forEach(el => el.textContent = inputUsername.value);
-
-                // Inject CSS layout configurations directly into the style element tag block
-                userCustomStyles.innerHTML = inputCustomCode.value;
-
-                // Process uploaded picture file
-                const file = imageFileInput.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        profileImageDisplay.src = e.target.result;
-                        profileImageDisplay.style.display = "block";
-                        fallbackSvg.style.display = "none";
-                    };
-                    reader.readAsDataURL(file);
-                }
-
-                editDrawer.style.display = "none";
-                alert("Profile changes computed instantly!");
-            });
-        });
-    </script>
-</body>
-</html>
+            <!-- Interests Box (Table Structure) -->
+            <div class="myspace-box">
