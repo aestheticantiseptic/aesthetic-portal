@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PinkSpace Glitter Chatrooms</title>
+    <!-- Dynamically pull Google Fonts API to allow any font styling -->
+    <link id="dynamic-google-font" rel="stylesheet" href="https://googleapis.com">
+    <style>
+        body { background: #ffc0cb; font-family: Arial, sans-serif; padding: 20px; }
+        .chat-wrap { max-width: 800px; margin: 0 auto; background: white; border: 3px solid #ff1493; padding: 20px; }
+        .room-nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 15px; }
+        .room-nav button { background: #ff69b4; color: white; border: none; padding: 8px 12px; cursor: pointer; font-weight: bold; }
+        .room-nav button:hover { background: #ff1493; }
+        .chat-window { height: 300px; border: 2px inset #ff69b4; background: #fff5f7; overflow-y: scroll; padding: 10px; margin-bottom: 15px; }
+        .controls-grid { display: flex; flex-wrap: wrap; gap: 15px; background: #ffe4e1; padding: 10px; margin-bottom: 15px; border-radius: 5px; }
+        .input-row { display: flex; gap: 10px; }
+        .input-row input[type="text"] { flex: 1; padding: 10px; }
+        .rules-box { background: #fff0f5; border-left: 5px solid #ff1493; padding: 10px; font-size: 0.9rem; margin-top: 20px; }
+        
+        /* Rainbow Text styling classes */
+        .rainbow-text {
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-wrap">
+    <!-- Translation Widget Anchor -->
+    <div id="google_translate_element" style="float: right;"></div>
+    <h2 style="color: #ff1493; margin-top:0;">✨ PinkSpace Rooms ✨</h2>
+
+    <!-- Navigation List for Chatrooms -->
+    <div class="room-nav">
+        <button onclick="switchRoom('Main Chat Room')">Room 1: Main</button>
+        <button onclick="switchRoom('Goth Chat Room')">Room 2: Goth</button>
+        <button onclick="switchRoom('Wiccan Chatroom')">Room 3: Wiccan</button>
+        <button onclick="switchRoom('Pagan Chat Room')">Room 4: Pagan</button>
+        <button onclick="switchRoom('Vampire Chatroom')">Room 5: Vampire</button>
+        <button onclick="switchRoom('Political Chatroom')">Room 6: Political</button>
+    </div>
+
+    <h3 id="current-room-title">Current: Main Chat Room</h3>
+    <div class="chat-window" id="chat-box">
+        <p style="color:gray;">[System]: Welcome to the chat room! Pick your colors and style your text below.</p>
+    </div>
+
+    <!-- Text Effects Toolbelt -->
+    <div class="controls-grid">
+        <div>
+            <label>Font Family:</label><br>
+            <select id="font-selector" onchange="updateFontTarget()">
+                <option value="Arial">Standard Arial</option>
+                <option value="VT323">VT323 (Retro)</option>
+                <option value="Comic Neue">Comic Neue</option>
+                <option value="Cherry Bomb One">Cherry Bomb</option>
+                <option value="Bungee Spice">Bungee Spice</option>
+                <option value="Creepster">Creepster</option>
+            </select>
+        </div>
+        <div>
+            <label>Color Wheel:</label><br>
+            <input type="color" id="text-color" value="#ff1493">
+        </div>
+        <div>
+            <label>Special Effects:</label><br>
+            <input type="checkbox" id="rainbow-toggle"> Rainbow Text 🌈
+        </div>
+    </div>
+
+    <!-- Message Submitter -->
+    <div class="input-row">
+        <input type="text" id="chat-msg" placeholder="Type your customized message here...">
+        <button onclick="sendMessage()" style="background:#ff1493; color:white; padding:10px 20px; border:none; font-weight:bold; cursor:pointer;">Send</button>
+    </div>
+
+    <!-- Dynamic Rules Area per Room -->
+    <div class="rules-box">
+        <h4>📜 Chat Room Rules (<span id="rules-title">Main Chat Room</span>)</h4>
+        <p id="rules-text">Be kind, keep it family friendly, and enjoy the nostalgic glitter vibes!</p>
+    </div>
+</div>
+
+<!-- Google Translate Scripts Integration -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//://google.com"></script>
+
+<script>
+    // Room rules directory object
+    const roomData = {
+        'Main Chat Room': 'Be kind, keep it friendly, and enjoy the nostalgic glitter vibes!',
+        'Goth Chat Room': 'Embrace the darkness. Discuss traditional goth bands, fashion, aesthetics, and art. Keep it respectful.',
+        'Wiccan Chatroom': 'Blessed be. Share spells, rituals, lunar alignments, and herbal lore safely.',
+        'Pagan Chat Room': 'Respect all nature-based spiritualities and pantheons. No proselytizing allowed.',
+        'Vampire Chatroom': 'Nightwalkers welcome. Discuss lore, literature, alternative culture, and roleplay rules apply.',
+        'Political Chatroom': 'Debate constructs logically. No hate speech, personal insults, or explicit threats allowed.'
+    };
+
+    function switchRoom(roomName) {
+        document.getElementById('current-room-title').innerText = 'Current: ' + roomName;
+        document.getElementById('rules-title').innerText = roomName;
+        document.getElementById('rules-text').innerText = roomData[roomName];
+        document.getElementById('chat-box').innerHTML += `<p style="color:gray; font-style:italic;">[System]: Switched to ${roomName}</p>`;
+    }
+
+    // Fetches and updates dynamic font dependencies from Google Fonts
+    function updateFontTarget() {
+        const selectedFont = document.getElementById('font-selector').value;
+        const formattedFontName = selectedFont.replace(/ /g, '+');
+        document.getElementById('dynamic-google-font').href = `https://googleapis.com{formattedFontName}&display=swap`;
+    }
+
+    function sendMessage() {
+        const msgInput = document.getElementById('chat-msg');
+        const text = msgInput.value.trim();
+        if(!text) return;
+
+        const chatBox = document.getElementById('chat-box');
+        const font = document.getElementById('font-selector').value;
+        const color = document.getElementById('text-color').value;
+        const isRainbow = document.getElementById('rainbow-toggle').checked;
+
+        let styledMessage = "";
+        
+        if (isRainbow) {
+            styledMessage = `<span class="rainbow-text" style="font-family: '${font}';">${text}</span>`;
+        } else {
+            styledMessage = `<span style="font-family: '${font}'; color: ${color};">${text}</span>`;
+        }
+
+        chatBox.innerHTML += `<p><strong>User:</strong> ${styledMessage}</p>`;
+        msgInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+</body>
+</html>
