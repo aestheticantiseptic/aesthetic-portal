@@ -7,7 +7,6 @@
     <link id="dynamic-google-font" rel="stylesheet" href="https://googleapis.com">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Emote image scaling rule to fit perfectly within standard text lines */
         .chat-emote {
             height: 28px;
             vertical-align: middle;
@@ -18,7 +17,7 @@
 </head>
 <body>
 
-    <!-- TOP NAVIGATION MODULE LINK STRIP -->
+    <!-- TOP NAVIGATION HEADER SYSTEM -->
     <div class="navbar" style="background-color: #ff007f; padding: 10px 15px; border-bottom: 2px solid #ffffff; box-shadow: 0 4px 0px #d6006a; margin-bottom: 20px;">
         <div style="max-width: 850px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <div style="font-size: 1.5rem; color: #ffffff; font-weight: bold; font-family: sans-serif;">
@@ -33,7 +32,7 @@
         </div>
     </div>
 
-    <!-- MAIN CHAT FRAME COMPONENT -->
+    <!-- CORE CHAT FRAME MAIN COMPONENT -->
     <div class="chat-wrap" style="max-width: 850px; margin: 20px auto; background-color: #ffffff; padding: 20px; border: 1px solid #ff007f;">
         <div id="google_translate_element" style="float: right;"></div>
         <h2 style="color: #ff007f; margin-top:0; font-family: sans-serif;">✨ PinkSpace Chat Rooms ✨</h2>
@@ -48,7 +47,6 @@
             <button onclick="switchRoom('Political Chatroom')" style="background-color: #ff007f; color: white; border: none; padding: 8px 12px; cursor: pointer; font-weight: bold;">Room 6: Political</button>
         </div>
         
-        <!-- CHAT HEADERS & AUDIO TOGGLE SWITCH -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
             <h3 id="current-room-title" style="color: #4a0026; margin: 0; font-family: sans-serif;">Current: Main Chat Room</h3>
             
@@ -58,7 +56,7 @@
         </div>
 
         <div class="chat-window" id="chat-box" style="height: 300px; border: 1px solid #ff007f; background-color: #fff5f7; overflow-y: scroll; padding: 10px; margin-bottom: 15px; box-sizing: border-box; color: #000000;">
-            <p style="color:gray;">[System]: Welcome to the chat room! Pick your colors, type Twitch emote codes, and style your text below.</p>
+            <p style="color:gray;">[System]: Welcome to the chat room! Type Twitch codes like Kappa or KEKW to test.</p>
         </div>
         
         <!-- Controls Belt Tool -->
@@ -91,7 +89,6 @@
             <button onclick="sendMessage()" style="background-color: #ff007f; color: white; padding: 8px 20px; border: none; font-weight: bold; cursor: pointer; box-shadow: none;">Send</button>
         </div>
 
-        <!-- HELPER EMOTE QUICK-REFERENCE PANEL -->
         <div style="margin-top: 10px; font-size: 0.8rem; background: #fff0f5; padding: 8px; border: 1px dashed #ff007f; color: #4a0026;">
             <strong>📺 Try Twitch/7TV/BTTV Codes:</strong> <code>Kappa</code>, <code>PogChamp</code>, <code>LUL</code>, <code>KEKW</code>, <code>OMEGALUL</code>, <code>SourPls</code>, <code>monkaS</code>, <code>EZ</code>, <code>Clap</code>
         </div>
@@ -103,13 +100,8 @@
         </div>
     </div>
 
-    <!-- SUPABASE CLIENT DATA DRIVERS ENGINE -->
+    <!-- SUPABASE SECURITY PIPELINES LINK DRIVER -->
     <script src="https://jsdelivr.net"></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); }
-    </script>
-    <script type="text/javascript" src="https://google.com"></script>
-
     <script>
         const SUPABASE_URL = "https://supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_2DWBfoCYTHLT-hDVvN-Trw_P3PWw6YX";
@@ -118,17 +110,15 @@
         let activeChannelRoom = 'Main Chat Room';
         let lastMessageId = 0;
 
-        // AOL IM SOUND ASSETS FILES ARCHIVES LINK MATRIX
-        const soundDoorOpen = new Audio("https://google.com");
-        const soundDoorSlam = new Audio("https://google.com");
-        const soundMessageChime = new Audio("https://google.com");
+        // FIXED EMBED AUDIO PATH LINKS (Bypasses security permission errors)
+        const soundDoorOpen = new Audio("https://mixkit.co");
+        const soundDoorSlam = new Audio("https://mixkit.co");
+        const soundMessageChime = new Audio("https://mixkit.co");
 
-        soundDoorOpen.volume = 0.5;
+        soundDoorOpen.volume = 0.4;
         soundDoorSlam.volume = 0.4;
         soundMessageChime.volume = 0.3;
 
-        // GLOBAL TWITCH, 7TV, BTTV, FFZ EMOTE PARSING INDEX
-        // Add any community emote code strings and map them to their official static/animated image mirror links
         const emoteDictionary = {
             "Kappa": "https://jtvnw.net",
             "PogChamp": "https://jtvnw.net",
@@ -137,3 +127,12 @@
             "OMEGALUL": "https://7tv.app",
             "SourPls": "https://betterttv.net",
             "monkaS": "https://betterttv.net",
+            "EZ": "https://betterttv.net",
+            "Clap": "https://betterttv.net"
+        };
+
+        const roomRulesMatrix = {
+            'Main Chat Room': 'Be kind, keep it friendly, and enjoy the nostalgic glitter vibes!',
+            'Goth Chat Room': 'Embrace the darkness. Discuss traditional goth bands, fashion, aesthetics, and art. Keep it respectful.',
+            'Wiccan Chatroom': 'Blessed be. Share spells, rituals, lunar alignments, and herbal lore safely.',
+            'Pagan Chat Room': 'Respect all nature-based spiritualities and pantheons. No proselytizing allowed.',
