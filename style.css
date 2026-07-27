@@ -1,112 +1,101 @@
+/* Base Retro Pink Web Structural Framework */
 body {
-    background-color: #ff69b4 !important;
-    background-image: 
-        radial-gradient(#ff1493 25%, transparent 25%), 
-        radial-gradient(#ff1493 25%, transparent 25%) !important;
-    background-size: 30px 30px !important;
-    background-position: 0 0, 15px 15px !important;
-    color: #4a0026 !important;
-    font-family: 'Comic Neue', sans-serif;
+    background-color: #ffe6f2; /* Soft pastel pink background */
+    background-image: radial-gradient(#ffb3d9 1px, transparent 1px);
+    background-size: 15px 15px; /* Subtle pixel dot pattern */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
     margin: 0;
     padding: 0;
 }
 
-a {
-    color: #ff007f;
+/* Header bar resembling classic layouts */
+.site-header {
+    background-color: #ff1a8c; /* Vivid dark pink navbar */
+    border-bottom: 3px double #ffb3d9;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.site-header a {
+    color: #ffffff;
     text-decoration: none;
-    font-weight: bold;
-}
-a:hover {
-    text-decoration: underline !important;
+    padding: 0 10px;
 }
 
-.profile-container, .container, .chat-wrap, .auth-container, .box, .myspace-box {
-    background: rgba(255, 240, 245, 0.96) !important;
-    border: 4px ridge #ff1493 !important;
-    box-shadow: 6px 6px 0px #cc0066 !important;
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 15px;
-    margin-bottom: 20px;
+.site-header a:hover {
+    text-decoration: underline;
+    color: #ffe6f2;
 }
 
-.auth-container { max-width: 420px; margin: 50px auto; }
-.chat-wrap { max-width: 850px; margin: 20px auto; }
-
-.myspace-box { padding: 0; border: 1px solid #ff007f !important; overflow: hidden; }
-.myspace-box h3 {
-    background-color: #ff007f !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px #4a0026 !important;
-    font-weight: bold !important;
-    margin: 0;
-    padding: 6px;
-    font-size: 0.9rem;
-}
-
-.room-nav button, .btn-action, .btn-cta {
-    background: #ff1493;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 2px 2px 0px #4a0026;
-    margin-top: 5px;
-}
-.room-nav button:hover, .btn-action:hover, .btn-cta:hover {
-    background: #ff69b4;
-}
-
-.chat-window {
-    height: 300px;
-    border: 2px inset #ff69b4;
-    background: #fff5f7;
-    overflow-y: scroll;
-    padding: 10px;
-    margin-bottom: 15px;
-}
-
-.controls-grid {
+/* Primary page layout container */
+.container {
+    width: 800px;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 2px solid #ff1a8c;
+    box-shadow: 4px 4px 0px #ffb3d9; /* Retro flat drop shadow */
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    background: #ffe4e1;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
-.rainbow-text {
-    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.left-column {
+    width: 40%;
+    padding-right: 15px;
+    text-align: center;
+}
+
+.right-column {
+    width: 60%;
+}
+
+/* User avatar container box styling */
+.avatar-box {
+    border: 1px solid #ff66b2;
+    padding: 10px;
+    background-color: #fff2f8;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 170px;
+    height: auto;
+    border: 2px solid #ff1a8c;
+}
+
+/* Colored section headers across profiles */
+h2 {
+    background-color: #ff99cc; /* Soft magenta header strip */
+    color: #4d0026; /* Dark berry colored font */
+    font-size: 14px;
+    padding: 5px;
+    margin-top: 0;
+    border: 1px solid #ff66b2;
+}
+
+h3 {
+    color: #ff1a8c;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.blurbs-box {
+    border: 1px solid #ff99cc;
+    padding: 10px;
+    background: #fff9fb;
+    margin-bottom: 15px;
+}
+
+/* Network counter display text style */
+.network-badge {
+    background-color: #ff1a8c;
+    color: #ffffff;
+    padding: 5px;
     font-weight: bold;
     display: inline-block;
-}
-
-.interests-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.interests-table td {
-    padding: 6px 8px;
-    vertical-align: top;
-    font-size: 0.8rem;
-    border-bottom: 1px solid #ffe6f2;
-}
-.label-cell {
-    background-color: #ffb6c1 !important;
-    color: #4a0026 !important;
-    font-weight: bold;
-    width: 30%;
-    border-right: 1px solid #ff007f;
-}
-
-textarea, input[type="text"], input[type="email"], input[type="password"], select {
-    background-color: #ffffff !important;
-    border: 2px solid #ff69b4 !important;
-    padding: 8px;
-    box-sizing: border-box;
-    color: #4a0026;
+    margin: 10px 0;
+    border: 1px dashed #ffffff;
 }
