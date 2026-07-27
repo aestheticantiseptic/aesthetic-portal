@@ -69,6 +69,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
         <div class="avatar-box">
             <img class="avatar" src="<?= htmlspecialchars($profile['avatar_url']) ?>" alt="User Avatar">
         </div>
+        <!-- NEW COMPONENT LAYER INJECTION: RETRO PINK SOCIAL MEDIA BACKGROUND PLAYER ENGINE -->
+        <?php if (!empty($profile['music_source_url'])): ?>
+            <div style="border:1px solid #ff99cc; background:#fff2f8; padding:8px; margin: 10px 0; text-align:center;">
+                <span style="font-weight:bold; font-size:11px; color:#4d0026; display:block; margin-bottom:5px;">🌸 Now Playing 🌸</span>
+                <?php 
+                if (filter_var($profile['music_source_url'], FILTER_VALIDATE_URL) && preg_match('/\.mp3$/i', $profile['music_source_url'])): 
+                ?>
+                    <audio src="<?= htmlspecialchars($profile['music_source_url']) ?>" controls autoplay loop style="width:100%; max-width:170px; height:30px;"></audio>
+                <?php 
+                else: 
+                    echo clean_retro_code($profile['music_source_url']);
+                endif; 
+                ?>
+            </div>
+        <?php endif; ?>
 
         <!-- NEW COMPONENT LAYER INJECTION: DYNAMIC SEND FRIEND REQUEST COMPONENT BUTTON -->
         <?php if (isset($_SESSION['user_id']) && $_SESSION['username'] !== $profile['username']): ?>

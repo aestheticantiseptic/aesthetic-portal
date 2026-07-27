@@ -13,13 +13,14 @@ $msg = "";
 
 // Process layout custom profile text alterations
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $display_name = trim($_POST["display_name"]);
-    $bio_about = $_POST["bio_about"];
-    $bio_interests = $_POST["bio_interests"];
+        $display_name = trim($_POST['display_name']);
+    $bio_about = $_POST['bio_about'];
+    $bio_interests = $_POST['bio_interests'];
+    $music_source_url = trim($_POST['music_source_url']);
 
-    $stmt = $pdo->prepare("UPDATE profiles SET display_name = ?, bio_about = ?, bio_interests = ? WHERE user_id = ?");
-    if ($stmt->execute([$display_name, $bio_about, $bio_interests, $user_id])) {
-        $msg = "Profile update saved successfully!";
+    $stmt = $pdo->prepare("UPDATE profiles SET display_name = ?, bio_about = ?, bio_interests = ?, music_source_url = ? WHERE user_id = ?");
+    if ($stmt->execute([$display_name, $bio_about, $bio_interests, $music_source_url, $user_id])) {
+        $msg = "Profile and media settings updated successfully!";
     }
 }
 
@@ -55,7 +56,12 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC);
             <label><b>Public Display Name:</b></label><br>
             <input type="text" name="display_name" value="<?= htmlspecialchars($profile['display_name'] ?? '') ?>" style="width: 98%; border: 1px solid #ff1a8c; padding: 4px;">
         </p>
-        
+                <p style="background: #fff2f8; border: 1px dashed #ff1a8c; padding: 10px;">
+            <label><b>🌸 Profile Background Music Track URL / Embed Link:</b></label><br>
+            <span style="font-size:10px; color:#666;">Paste a direct audio link (.mp3) or a classic widget embed iframe code (YouTube, SoundCloud, etc.):</span><br>
+            <input type="text" name="music_source_url" value="<?= htmlspecialchars($profile['music_source_url'] ?? '') ?>" style="width: 98%; border: 1px solid #ff1a8c; padding: 4px; margin-top:5px; font-family:monospace;">
+        </p>
+
         <p>
             <label><b>About Me Field (You can inject raw HTML layout blocks or custom CSS &lt;style&gt; configurations here!):</b></label><br>
             <textarea name="bio_about" rows="10" style="width: 98%; border: 1px solid #ff1a8c; font-family: monospace;"><?= htmlspecialchars($profile['bio_about'] ?? '') ?></textarea>
