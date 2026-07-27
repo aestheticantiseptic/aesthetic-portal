@@ -44,16 +44,24 @@ function clean_retro_code($dirty_html) {
 </header>
 
 <main class="container">
-    <div class="left-column">
+        <div class="left-column">
         <h1><?= htmlspecialchars($profile['display_name']) ?></h1>
         
         <div class="avatar-box">
             <img class="avatar" src="<?= htmlspecialchars($profile['avatar_url']) ?>" alt="User Avatar">
         </div>
+
+        <!-- NEW COMPONENT LAYER INJECTION: DYNAMIC SEND FRIEND REQUEST COMPONENT BUTTON -->
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['username'] !== $profile['username']): ?>
+            <a href="add_friend.php?user=<?= urlencode($profile['username']) ?>" class="add-friend-btn">
+                🌸 Add to Friends 🌸
+            </a>
+        <?php endif; ?>
         
         <div class="network-badge">
             "<?= htmlspecialchars($profile['username']) ?> is in your pink network"
         </div>
+
     </div>
     
     <div class="right-column">

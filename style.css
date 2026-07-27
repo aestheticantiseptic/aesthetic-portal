@@ -99,3 +99,23 @@ h3 {
     margin: 10px 0;
     border: 1px dashed #ffffff;
 }
+/* Friend Action Control Elements buttons */
+.add-friend-btn {
+    display: inline-block;
+    background-color: #ff1a8c;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    margin: 10px 0;
+    border: 2px outset #ffb3d9;
+    box-shadow: 2px 2px 0px #4d0026;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.add-friend-btn:hover {
+    background-color: #ff66b2;
+    border: 2px inset #ffb3d9;
+    cursor: pointer;
+}
