@@ -1,0 +1,248 @@
+/* ==========================================
+   GLOBAL THEME & TYPOGRAPHY RESET
+   ========================================== */
+* {
+    box-sizing: border-box;
+    font-family: Arial, "MS Sans Serif", Geneva, sans-serif;
+    font-size: 13px;
+}
+body {
+    background-color: #fff2f6; /* Soft pastel pink background */
+    margin: 0;
+    padding: 0;
+    color: #333333;
+}
+
+/* ==========================================
+   HEADER & NAVIGATION BAR STYLES
+   ========================================== */
+.utility-bar {
+    background-color: #ffffff;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ffccd8;
+}
+.logo-placeholder {
+    color: #e6007e;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.utility-links a {
+    color: #ba2d70;
+    text-decoration: underline;
+    margin-left: 10px;
+    font-size: 12px;
+}
+.main-nav {
+    background-color: #f6409f; /* Bright signature magenta */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+.nav-item {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 14px;
+    font-weight: bold;
+    border-right: 1px solid #ff73be;
+}
+.nav-item:hover {
+    background-color: #d82582;
+}
+
+/* ==========================================
+   STRUCTURED BOX CONTAINER REUSABLE COMPONENT
+   ========================================== */
+.main-content {
+    max-width: 800px;
+    margin: 15px auto;
+    padding: 0 10px;
+}
+.box {
+    border: 1px solid #f6409f;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+}
+.box-orange {
+    border: 1px solid #ffaa44;
+}
+.box-header {
+    background-color: #ff85c6;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.box-header-orange {
+    background-color: #ffcc80;
+    color: #8b4f00;
+}
+.box-header-welcome {
+    background-color: #ff85c6;
+    color: #e6007e;
+    font-weight: bold;
+    padding: 5px 12px;
+    font-size: 13px;
+}
+.box-body {
+    padding: 12px;
+    line-height: 1.4;
+}
+
+/* ==========================================
+   HOMEPAGE SPECIFIC STYLES
+   ========================================== */
+.hero-body {
+    padding: 20px;
+}
+.hero-title {
+    color: #b30066;
+    font-size: 26px;
+    margin: 15px 0 10px 0;
+    font-weight: normal;
+}
+.hero-description {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #444;
+}
+.feature-list {
+    margin: 0 0 25px 0;
+    padding-left: 20px;
+}
+.feature-list li {
+    color: #b30066;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+.btn-cta {
+    background-color: #f6409f;
+    color: #ffffff;
+    border: 1px solid #b3226f;
+    padding: 6px 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+}
+.btn-cta-alt {
+    background-color: #ffffff;
+    color: #b30066;
+    border: 1px solid #f6409f;
+}
+.updates-list {
+    list-style: none;
+    padding: 12px;
+    margin: 0;
+}
+.updates-list li {
+    margin-bottom: 8px;
+    padding-left: 12px;
+    position: relative;
+}
+.updates-list li::before {
+    content: "»";
+    color: #ff85c6;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* ==========================================
+   PROFILE CUSTOMIZATION METRICS & INTERACTIVITY
+   ========================================== */
+.login-banner {
+    color: #666;
+    font-size: 11px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+.network-banner {
+    border: 2px solid #ff69b4;
+    text-align: center;
+    padding: 15px;
+    font-size: 15px;
+    margin: 15px 0;
+    font-weight: normal;
+    background-color: #fff;
+}
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.details-table td {
+    padding: 4px 2px;
+    vertical-align: top;
+}
+.label-cell {
+    color: #b03060;
+    font-weight: bold;
+    width: 30%;
+}
+.sub-title {
+    color: #b03060;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 2px;
+}
+.comment-input-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+.comment-box {
+    flex-grow: 1;
+    border: 1px solid #ff69b4;
+    padding: 5px;
+    height: 40px;
+    resize: none;
+}
+.embed-container {
+    text-align: center;
+    margin: 10px 0;
+}
+.embed-container img {
+    border: 1px solid #000000;
+    max-width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+/* ==========================================
+   FOOTER MARKUP STYLES
+   ========================================== */
+.footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #666;
+    line-height: 1.6;
+}
+.footer-brand {
+    color: #b30066;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.footer-disclaimer {
+    font-size: 11px;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
+.footer-links a {
+    color: #b30066;
+    text-decoration: none;
+    margin: 0 5px;
+}
+.footer-links a:hover {
+    text-decoration: underline;
+}
